@@ -79,8 +79,10 @@ spec:
     }
     //TODO: push to SonaType
     stage ("Wait for Docker Hub to Build...") {
+      steps {
         echo "Waiting 5 minutes for deployment to complete prior to redeploying on K8s"
         sleep(time:5,unit:"MINUTES")
+      }
     }
     //TODO: Figure out how to get K8s to roll the deployment...
   }
