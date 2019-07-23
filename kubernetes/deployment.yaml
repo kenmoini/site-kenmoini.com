@@ -1,0 +1,79 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: site-kenmoini-com
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: site-kenmoini-com
+    spec:
+      containers:
+      - image: kenmoini/site-kenmoini.com
+        imagePullPolicy: Always
+        name: site-kenmoini-com
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: kmregcred
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: site-kenmoini-com
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+  selector:
+    app: site-kenmoini-com
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: site-kenmoini-com
+  annotations:
+    certmanager.k8s.io/acme-challenge-type: http01
+    certmanager.k8s.io/cluster-issuer: letsencrypt-http-prod
+    certmanager.k8s.io/issuer: letsencrypt-http-prod
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: true
+spec:
+  tls:
+  - hosts:
+    - kenmoini.com
+    secretName: site-kenmoini-com-tls
+  rules:
+  - host: kenmoini.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: site-kenmoini-com
+          servicePort: 80
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: site-www-kenmoini-com
+  annotations:
+    certmanager.k8s.io/acme-challenge-type: http01
+    certmanager.k8s.io/cluster-issuer: letsencrypt-http-prod
+    certmanager.k8s.io/issuer: letsencrypt-http-prod
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: true
+spec:
+  tls:
+  - hosts:
+    - www.kenmoini.com
+    secretName: site-www-kenmoini-com-tls
+  rules:
+  - host: www.kenmoini.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: site-kenmoini-com
+          servicePort: 80
