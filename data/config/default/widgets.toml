@@ -1,0 +1,16 @@
+[recent_posts]
+title = "Recent Mumblings"
+length = 5
+excludeTypes = ["page", "links"]
+
+[search]
+title = "Search"
+
+[social_menu]
+title = ""
+platforms = ["github","twitter","instagram","email","linkedin","youtube"]
+
+[taxonomy_cloud]
+title = ""
+taxonomy = "tags"
+shuffle = true

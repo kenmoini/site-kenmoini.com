@@ -1,0 +1,99 @@
+baseURL = "https://www.kenmoini.com/"
+languageCode = "en-us"
+title = "Ken Moini"
+
+theme = "engimo-km"
+
+disqusShortname = ""
+googleAnalytics = ""
+
+Paginate = 10
+preserveTaxonomyNames = true
+
+enableRobotsTXT = true # generate robots.txt
+
+# Syntax Highlighting ( https://gohugo.io/content-management/syntax-highlighting/ )
+pygmentsCodefences = true
+
+enableEmoji = true
+
+# Missing translations will default to this content language
+defaultContentLanguage = "en"
+
+[params.info]
+description = "Welcome to the digital residence of Ken Moini.  I work on things that live on the internet, practice modern alchemy, and dabble in danger."
+title404 = "What th-"
+
+[params.assets]
+favicon = "favicon.ico"
+customCSS = ["css/custom.css"]
+customJS = ["js/custom.js"]
+gopher = "/images/362cc0d846057db9dba656b5803a1a93c3b7510c.png"
+
+[params.settings]
+# date & time format: https://golang.org/pkg/time/
+dateFormat = "2006, Jan 02"
+listDateFormat = "2006, Jan 02"
+archiveDateFormat = "Jan 02"
+hideEntryNavigation = ["page"] # boolean / array of sections
+hideEntryMeta = ["page"] # boolean / array of sections
+showReadingTime = true
+showLastmod = true
+taxonomyCloudShuffle = true
+accentColor = "#de0066"
+menuLinkColor = "#ff9800"
+menuHoverLinkColor = "#de0066"
+textColor = "#EEE"
+headerTextColor = "#EEE"
+backgroundColor = "#000"
+hideMainMenu = false
+rtl = false
+
+[params.sidebar]
+enable = false
+
+[params.widgets]
+#header = ["breadcrumbs"]
+homepage = ["home_intro", "recent_posts"]
+sidebar = ["about","search","sidebar_menu","taxonomy_cloud"]
+footer = ["social_menu"]
+
+[params.opengraph.twitter]
+page = "notkemo" # Twitter page username
+
+[params.seo]
+titleSeparator = "-"
+
+[params.social]
+email = "ken@kenmoini.com"
+github = "kenmoini"
+instagram = "kenmoini"
+linkedin = "kenmoini"
+twitter = "notkemo"
+#youtube = "UCT-U0rNerYxItGcuoPX-WYA"
+
+[params.comments]
+enable = false
+
+# Isso: https://posativ.org/isso/
+[params.comments.isso]
+enable = false
+scriptSrc = "" # "https://isso.example.com/js/embed.min.js"
+dataAttrs = "" # "data-isso='https://isso.example.com' data-isso-require-author='true'"
+
+[taxonomies]
+category = "categories"
+series = "series"
+tag = "tags"
+
+["page"]
+excludedTypes = ["links"]
+
+[permalinks]
+page = "/:slug/"
+
+[languages]
+[languages.en]
+lang = "en"
+languageName = "English"
+weight = 1

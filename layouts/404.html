@@ -1,0 +1,29 @@
+{{ partial "header" . }}
+
+<div class='entry'>
+  <div class='container entry-content'>
+    <span class='screen-reader-text'>
+      {{- .Site.Params.info.title404 | default .Title -}}
+    </span>
+    <figure class='gopher text-center'>
+      <a href='{{ "/" | relLangURL }}'>
+        <img src='{{ ( .Site.Params.assets.gopher | default "assets/gopher.png" ) | relURL }}' alt='{{ i18n "gopher" }}'/>
+        <span class='screen-reader-text'>
+          {{- i18n "goHome" -}}
+        </span>
+      </a>
+      <figcaption>
+        <h1 class='title'>
+          <a href='{{ "/" | relLangURL }}'>
+            {{- .Site.Params.info.title404 | default .Title -}}
+          </a>
+        </h1>
+      </figcaption>
+    </figure>
+    <h2 class="text-center">
+        404 - Page Not Found
+    </h2>
+  </div>
+</div>
+
+{{ partial "footer" . }}

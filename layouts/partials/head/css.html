@@ -1,0 +1,10 @@
+<style>
+    :root{--color-accent: {{- .Site.Params.settings.accentColor | default "#ffcd00" -}};}
+    blockquote { border-left: .2em solid {{- .Site.Params.settings.accentColor | default "#ffcd00" -}};}
+    :root{background-color: {{- .Site.Params.settings.backgroundColor | default "#ffffff" -}};}
+    body{color: {{- .Site.Params.settings.textColor | default "#000000" -}};}
+    .title, h1, h2, h3, h4, h5, h6 {color:  {{- .Site.Params.settings.headerTextColor | default "#000000" -}};}
+    a, .menu a, .sidebar-toggler span, .sub-menu-toggler, .widget-social_menu a {color: {{- .Site.Params.settings.menuLinkColor | default "#ffcd00" -}};}
+    .menu li.current > a, a:focus, a:hover, .menu a:focus, .menu a:hover, .sidebar-toggler span:focus, .sidebar-toggler span:hover, .sub-menu-toggler:focus, .sub-menu-toggler:hover, .widget-social_menu a:focus, .widget-social_menu a:hover {color: {{- .Site.Params.settings.menuHoverLinkColor | default "#ffcd00" -}};}
+</style>
+    
