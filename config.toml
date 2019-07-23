@@ -2,6 +2,8 @@ baseURL = "https://www.kenmoini.com/"
 languageCode = "en-us"
 title = "Ken Moini"
 
+enableGitInfo = "true"
+
 theme = "engimo-km"
 
 disqusShortname = ""
