@@ -59,3 +59,8 @@ div.highlight {
 	text-align:center;
 	margin: 1em auto;
 }
+
+ul.activity-list li {
+	width: fit-content;
+	margin:0.25rem auto;
+}
