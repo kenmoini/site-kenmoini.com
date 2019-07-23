@@ -1,0 +1,22 @@
+      </main>
+
+      <footer id='footer' class='footer'>
+        <div class='container sep-before'>
+          {{- $footerWidgets := .Site.Params.widgets.footer -}}
+          {{- partial "extras/widget_area" ( dict "Widgets" $footerWidgets "Scope" . ) -}}
+          {{ partial "footer/copyright" . }}
+          
+          {{ if .IsPage }}
+          <small style="color:#333" class="muted"><em>Rev {{ .GitInfo.AbbreviatedHash }}</em></small>
+          {{ end }}
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  {{- partial "footer/scripts" . -}}
+
+</body>
+
+</html>
