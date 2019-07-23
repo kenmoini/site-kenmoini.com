@@ -31,8 +31,9 @@ Often things will be technology related, but far from limited to it - I'm a dyna
 <li class="mb-4 text-right col-sm-12 col-md-6"><strong>Leisurely Pleasures</strong><br>Playing in the kitchen, making benches at a moments notice, running up the power bill in my home lab</li>
 </ul>
 <div class="text-center"><h5>Current Activities</h5></div>
-<ul class="text-center">
+<ul class="text-center activity-list">
 <li>Going hog wild in Kubernetes and deploying everything as a container orchestrated through a CI/CD pipeline (including this site!)</li>
+<li>Building a Kubernetes Dashboard because I miss OpenShift's WebUI, and I don't have enought projects of course.</li>
 <li>Developing a scalable enterprise analytics and marketing platform for client engagements.  It's dope AF.</li>
 <li>Shooting still heads, talking heads, and teaching heads. I fix everything in post.</li>
 <li>Planning a Tiny House.</li>
