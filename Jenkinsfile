@@ -36,7 +36,6 @@ spec:
                 withEnv(['GIT_SSH=./local_ssh.sh']) {
                     sh 'git clone git@github.com:kenmoini/site-kenmoini.com.git'
                     sh 'cd site-kenmoini.com && git submodule update --init'
-                    sh('cd site-kenmoini.com && git checkout --orphan static-branch')
                 }
             }
         }
@@ -58,6 +57,7 @@ spec:
                 withCredentials([sshUserPrivateKey(credentialsId: 'jenkins-builder-git-key', keyFileVariable: 'SSH_KEY')]) {
                     sh('git config --global user.email "ken@kenmoini.com"')
                     sh('git config --global user.name "Kemo Jenkins Deployer"')
+                    sh('cd site-kenmoini.com && git checkout --orphan static-branch')
                     sh('cd site-kenmoini.com && git add public/ Dockerfile')
                     sh('cd site-kenmoini.com && git commit -m "Built site, deploying now"')
                     sh 'cd site-kenmoini.com && echo ssh -i $SSH_KEY -l git -o StrictHostKeyChecking=no \\"\\$@\\" > local_ssh.sh'
