@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>nodebalancer on Ken Moini</title>
+    <link>https://www.kenmoini.com/tags/nodebalancer/</link>
+    <description>Recent content in nodebalancer on Ken Moini</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 08 Jul 2019 22:31:48 -0500</lastBuildDate>
+    
+	<atom:link href="https://www.kenmoini.com/tags/nodebalancer/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Kubernetes on Linode – A Quick Start of Sorts</title>
+      <link>https://www.kenmoini.com/blog/kubernetes-on-linode-a-quick-start-of-sorts/</link>
+      <pubDate>Mon, 08 Jul 2019 22:31:48 -0500</pubDate>
+      
+      <guid>https://www.kenmoini.com/blog/kubernetes-on-linode-a-quick-start-of-sorts/</guid>
+      <description>When I was at Red Hat Summit, I spent the last day in some sweatpants and meandered about the showroom floor trying to hide my Executive Exchange badge from all the sales vultures. They announced over the loudspeaker that they were closing up shop soon, and so I made my last round across the room. To my surprise, there were rows I hadn&amp;rsquo;t gone to yet – the place was massive.</description>
+    </item>
+    
+  </channel>
+</rss>

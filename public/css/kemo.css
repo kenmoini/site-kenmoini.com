@@ -1,0 +1,66 @@
+.text-center {
+    text-align: center !important;
+}
+.text-left {
+    text-align: left !important;
+}
+.text-right {
+    text-align: right !important;
+}
+span.badge {
+	padding:0.25rem;
+	color:#EEE;
+	background:#2d2f36;
+    margin:0.15rem;
+    font-size: 0.75rem;
+}
+div.highlight {
+    max-height: 40vh;
+    overflow: auto;
+}
+
+.three-by {
+	max-width:33vw;
+	width:30% !important;
+	margin:1rem 1% !important;
+	display:inline-block;
+
+}
+
+.posts-group .post-item {
+	padding: 1rem;
+}
+.gallery-page .posts-group .post-item {
+	padding:0 0 1rem 0;
+}
+.gallery-page h2 {
+	border-bottom:1px solid;
+	padding-bottom:1rem;
+	margin-bottom:1rem;
+}
+.gallery-page .posts-group .post-item {
+	border-bottom:none;
+	max-height:210px;
+	overflow:hidden;
+}
+.img-responsive {
+	max-width:100%;
+}
+
+.entry-nav .sep-before:nth-child(2)::before {
+	width: 4em;
+	margin:2.5em 0;
+	text-align: right;
+	display:inline-block;
+}
+.white-bkg {
+	background: #FFF;
+	width: max-content;
+	text-align:center;
+	margin: 1em auto;
+}
+
+ul.activity-list li {
+	width: fit-content;
+	margin:0.25rem auto;
+}

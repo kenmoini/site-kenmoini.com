@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang='en'><head>
+  <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content='I&rsquo;m sure you&rsquo;ve heard of RWD, or Responsive Web Design. HA, that&rsquo;s soooo two-thousand-and-late
+What&rsquo;s hot on the streets these days is PWA, or Progressive Web Applications. You know how Google has pretty much taken over how the web is shaped due to our consumption and reliance and development around Chrome? Yeah, well they&rsquo;ve rolled out AMP which I&rsquo;m sure you&rsquo;ve seen, but otherwise there&rsquo;s another thing - these Progressive Web Applications.'>
+<meta name='theme-color' content='#de0066'>
+
+<meta property='og:title' content='PWA-Haaat - Ken Moini'>
+<meta property='og:description' content='I&rsquo;m sure you&rsquo;ve heard of RWD, or Responsive Web Design. HA, that&rsquo;s soooo two-thousand-and-late
+What&rsquo;s hot on the streets these days is PWA, or Progressive Web Applications. You know how Google has pretty much taken over how the web is shaped due to our consumption and reliance and development around Chrome? Yeah, well they&rsquo;ve rolled out AMP which I&rsquo;m sure you&rsquo;ve seen, but otherwise there&rsquo;s another thing - these Progressive Web Applications.'>
+<meta property='og:url' content='https://www.kenmoini.com/blog/pwa-haaat/'>
+<meta property='og:site_name' content='Ken Moini'>
+<meta property='og:type' content='article'><meta property='article:section' content='blog'><meta property='article:tag' content='progressive web design'><meta property='article:tag' content='pwa'><meta property='article:tag' content='service workers'><meta property='article:tag' content='javascript'><meta property='article:tag' content='js'><meta property='article:tag' content='Fierce Software'><meta property='article:published_time' content='2019-01-03T22:31:48-05:00'/><meta property='article:modified_time' content='2019-07-22T23:25:39-05:00'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@notkemo'>
+
+<meta name="generator" content="Hugo 0.55.6" />
+
+  <title>PWA-Haaat - Ken Moini</title>
+  <link rel='canonical' href='https://www.kenmoini.com/blog/pwa-haaat/'>
+  
+  
+  <link rel='icon' href='/favicon.ico'>
+<link rel='stylesheet' href='/assets/css/main.fb20af92.css'><link rel='stylesheet' href='/css/custom.css'><style>
+    :root{--color-accent:#de0066;}
+    blockquote { border-left: .2em solid#de0066;}
+    :root{background-color:#000;}
+    body{color:#EEE;}
+    .title, h1, h2, h3, h4, h5, h6 {color:#EEE;}
+    a, .menu a, .sidebar-toggler span, .sub-menu-toggler, .widget-social_menu a {color:#ff9800;}
+    .menu li.current > a, a:focus, a:hover, .menu a:focus, .menu a:hover, .sidebar-toggler span:focus, .sidebar-toggler span:hover, .sub-menu-toggler:focus, .sub-menu-toggler:hover, .widget-social_menu a:focus, .widget-social_menu a:hover {color:#de0066;}
+</style>
+    
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap-grid.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/css/kemo.css">
+<link href="/vendor/fontawesome-free-5.9.0-web/css/all.css" rel="stylesheet"> 
+</head>
+<body class='page type-blog'>
+
+  <div class='site'><a class='screen-reader-text' href='#content'>Skip to Content</a><div class='main'><nav id='main-menu' class='menu main-menu' aria-label='Main Menu'>
+  <div class='container'>
+    
+    <ul>
+      <li class="">
+          <a href="/" title="Home - Ken Moini"><i class="fa fa-home"></i></a>
+      </li><li class='item'>
+        <a href='/about/' class="about">
+          <span>About</span>
+        </a>
+      </li><li class='item'>
+        <a href='/links/' class="links">
+          <span>Links</span>
+        </a>
+      </li><li class='item'>
+        <a href='/blog/' class="blog">
+          <span>Blog</span>
+        </a>
+      </li></ul>
+  </div>
+</nav><div class='header-widgets'>
+        <div class='container'></div>
+      </div>
+
+      <main id='content'>
+
+
+<article lang='en' class='entry'>
+  <header class='header entry-header'>
+  <div class='container sep-after'>
+    <div class='header-info'>
+      <h1 class='title'>PWA-Haaat</h1>
+      
+
+    </div>
+    <div class='entry-meta'>
+  <span class='posted-on'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+  
+</svg>
+<span class='screen-reader-text'>Posted on </span>
+  <time class='entry-date' datetime='2019-01-03T22:31:48-05:00'>2019, Jan 03</time>
+</span>
+
+  
+  
+<span class='reading-time'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <circle cx="12" cy="12" r="10"/>
+  <polyline points="12 6 12 12 15 15"/>
+  
+</svg>
+10 mins read
+</span>
+
+
+  
+  
+</div>
+
+
+  </div>
+</header>
+
+  
+  
+
+  <div class='container entry-content'>
+  
+
+<p>I&rsquo;m sure you&rsquo;ve heard of RWD, or Responsive Web Design.  HA, that&rsquo;s <em>soooo</em> two-thousand-and-<em>late</em></p>
+
+<p>What&rsquo;s hot on the streets these days is PWA, or Progressive Web Applications.
+You know how Google has pretty much taken over how the web is shaped due to our consumption and reliance and development around Chrome?  Yeah, well they&rsquo;ve rolled out AMP which I&rsquo;m sure you&rsquo;ve seen, but otherwise there&rsquo;s another thing - these Progressive Web Applications.</p>
+
+<p>See, the idea is to bring more native application functions into web application platforms in an easy manner.  Down side is pretty much only Chrome-based browser support these features.  Yay!</p>
+
+<p>Considering that&rsquo;s what I cater to as well, I decided to take a plunge into PWAs with a great guenea pig - <a href="https://fiercesw.com">the website for the company I work for!</a></p>
+
+<h3 id="project-fierce-software">Project: Fierce Software</h3>
+
+<h4 id="task-finish-pwa-deployment-testing">Task: Finish PWA deployment &amp; testing</h4>
+
+<p>There were a few key things I wanted to offer via the Service Worker extensions in deploying the PWA components&hellip;</p>
+
+<ul>
+<li>Pre-caching of files</li>
+<li>On-the-go caching of files with filtering</li>
+<li>Offline banner notice at bottom of page when disconnected</li>
+<li>Add to Homescreen functionality (more native app like look)</li>
+<li>Custom offline page for non-cached pages</li>
+<li>Custom 404 page</li>
+</ul>
+
+<p>First off, I must admit I did not code all of this today.  Most of it I did before when transitioning the company website to a new host.
+However, the 404 page and some of the finer logic was completed today after a lot of labor because these service worker things aren&rsquo;t easy and the examples out there are very different and not all correct&hellip;</p>
+
+<p>What I will go about are some of the files that make of the COMPLETE working of a PWA-enabled WordPress website running on Nginx.  There are a lot of details, most of it is verbose enough and has pretty solid comments, otherwise there are a lot of moving parts - keep up.
+This will assume you generated your site.manifest file and needed icons with the <a href="https://realfavicongenerator.net/">Favicon Generator</a>.</p>
+
+<p><strong>/con.txt</strong> - This is just a sample file that exists for a connection test because</p>
+
+<p><strong>/sw.js</strong> - This is the Service Worker, a lot of the brains behind the operation
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">//===================================================================================
+</span><span style="color:#75715e">// Setup
+</span><span style="color:#75715e">// - Define the name you want for your cache (var CACHE)
+</span><span style="color:#75715e">// - List the files and paths you want pre-cached
+</span><span style="color:#75715e">// -- NOTE: Different path variables on the same file do count as different assets
+</span><span style="color:#75715e">// --   eg /css/style.css != /css/style.css?v=4.2.0 that is loaded from your header,
+</span><span style="color:#75715e">// --   you&#39;ll need to list the specific asset path that is loaded to properly cache
+</span><span style="color:#75715e">//===================================================================================
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">CACHE</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;fsw-offline&#34;</span>;
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">VERBOSE</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">precacheFiles</span> <span style="color:#f92672">=</span> [
+	<span style="color:#e6db74">&#39;/&#39;</span>,
+	<span style="color:#e6db74">&#39;/404.html&#39;</span>,
+	<span style="color:#e6db74">&#39;/offline.html&#39;</span>,
+	<span style="color:#e6db74">&#39;/offline-files/offline-feline-tiny.jpeg&#39;</span>,
+	<span style="color:#e6db74">&#39;/offline-files/cropped-logo3.png&#39;</span>,
+	<span style="color:#e6db74">&#39;/offline-files/404Img_smaller.png&#39;</span>,
+	<span style="color:#e6db74">&#39;/android-chrome-144x144.png&#39;</span>,
+	<span style="color:#e6db74">&#39;/android-chrome-192x192.png&#39;</span>,
+	<span style="color:#e6db74">&#39;/android-chrome-256x256.png&#39;</span>,
+	<span style="color:#e6db74">&#39;/android-chrome-36x36.png&#39;</span>,
+	<span style="color:#e6db74">&#39;/android-chrome-384x384.png&#39;</span>,
+	<span style="color:#e6db74">&#39;/android-chrome-48x48.png&#39;</span>,
+	<span style="color:#e6db74">&#39;/android-chrome-512x512.png&#39;</span>,
+	<span style="color:#e6db74">&#39;/android-chrome-72x72.png&#39;</span>,
+	<span style="color:#e6db74">&#39;/android-chrome-96x96.png&#39;</span>,
+	<span style="color:#e6db74">&#39;/apple-touch-icon-114x114.png&#39;</span>,
+	<span style="color:#e6db74">&#39;/apple-touch-icon-120x120.png&#39;</span>,
+	<span style="color:#e6db74">&#39;/apple-touch-icon-144x144.png&#39;</span>,
+	<span style="color:#e6db74">&#39;/apple-touch-icon-152x152.png&#39;</span>,
+	<span style="color:#e6db74">&#39;/apple-touch-icon-180x180.png&#39;</span>,
+	<span style="color:#e6db74">&#39;/apple-touch-icon-57x57.png&#39;</span>,
+	<span style="color:#e6db74">&#39;/apple-touch-icon-60x60.png&#39;</span>,
+	<span style="color:#e6db74">&#39;/apple-touch-icon-72x72.png&#39;</span>,
+	<span style="color:#e6db74">&#39;/apple-touch-icon-76x76.png&#39;</span>,
+	<span style="color:#e6db74">&#39;/apple-touch-icon.png&#39;</span>,
+	<span style="color:#e6db74">&#39;/apple-touch-icon-114x114-precomposed.png&#39;</span>,
+	<span style="color:#e6db74">&#39;/apple-touch-icon-120x120-precomposed.png&#39;</span>,
+	<span style="color:#e6db74">&#39;/apple-touch-icon-144x144-precomposed.png&#39;</span>,
+	<span style="color:#e6db74">&#39;/apple-touch-icon-152x152-precomposed.png&#39;</span>,
+	<span style="color:#e6db74">&#39;/apple-touch-icon-180x180-precomposed.png&#39;</span>,
+	<span style="color:#e6db74">&#39;/apple-touch-icon-57x57-precomposed.png&#39;</span>,
+	<span style="color:#e6db74">&#39;/apple-touch-icon-60x60-precomposed.png&#39;</span>,
+	<span style="color:#e6db74">&#39;/apple-touch-icon-72x72-precomposed.png&#39;</span>,
+	<span style="color:#e6db74">&#39;/apple-touch-icon-76x76-precomposed.png&#39;</span>,
+	<span style="color:#e6db74">&#39;/apple-touch-icon-precomposed.png&#39;</span>,
+	<span style="color:#e6db74">&#39;/favicon-16x16.png&#39;</span>,
+	<span style="color:#e6db74">&#39;/favicon-32x32.png&#39;</span>,
+	<span style="color:#e6db74">&#39;/favicon.ico&#39;</span>
+    ];
+
+<span style="color:#75715e">//===================================================================================
+</span><span style="color:#75715e">// Service Worker Install Event Listener
+</span><span style="color:#75715e">// - Install stage sets up the offline page in the cache and opens a new cache
+</span><span style="color:#75715e">// - All we&#39;re doing in this function though is listening to the &#39;install&#39; event that
+</span><span style="color:#75715e">//    is fired on initial Service Worker deployment.  When this event is fired, we&#39;ll
+</span><span style="color:#75715e">//    run the function preLoad() and waitUntil it is completed.
+</span><span style="color:#75715e">//===================================================================================
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;install&#39;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">event</span>) {
+	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">VERBOSE</span>) {
+	  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;[ServiceWorker] Install Event starting&#39;</span>);
+	}
+  <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">waitUntil</span>(<span style="color:#a6e22e">preLoad</span>());
+	<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">VERBOSE</span>) {
+		<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;[ServiceWorker] Install Event complete&#39;</span>);
+	}
+});
+
+<span style="color:#75715e">//===================================================================================
+</span><span style="color:#75715e">// preLoad function
+</span><span style="color:#75715e">// - This function will be run once the Service Worker&#39;s &#39;install&#39; event is fired
+</span><span style="color:#75715e">// - We&#39;re opening a cache (var CACHE defined earlier), then with that cache we&#39;ll
+</span><span style="color:#75715e">//    add all of the files we defined earlier to this cache.
+</span><span style="color:#75715e">//===================================================================================
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">preLoad</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(){
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">caches</span>.<span style="color:#a6e22e">open</span>(<span style="color:#a6e22e">CACHE</span>).<span style="color:#a6e22e">then</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">cache</span>) {
+		<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">VERBOSE</span>) {
+	    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;[ServiceWorker] Precaching core files and offline page&#39;</span>);
+		}
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">cache</span>.<span style="color:#a6e22e">addAll</span>(<span style="color:#a6e22e">precacheFiles</span>);
+  }).<span style="color:#66d9ef">catch</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">ex</span>) {
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;[ServiceWorker][Error Code &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">ex</span>.<span style="color:#a6e22e">code</span> <span style="color:#f92672">+</span><span style="color:#e6db74">&#34;] &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">ex</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">ex</span>.<span style="color:#a6e22e">message</span>);
+  });
+}
+
+<span style="color:#75715e">//===================================================================================
+</span><span style="color:#75715e">// Service Worker Fetch Event Listener
+</span><span style="color:#75715e">// - This is where most of the magic is piped together.
+</span><span style="color:#75715e">// - For every request&#39;s &#39;fetch&#39; event, the Service Worker will basically hijack it
+</span><span style="color:#75715e">//    First it&#39;ll run checkResponse which will determine if it&#39;s a proper request or
+</span><span style="color:#75715e">//    if it&#39;s a 404.  Then we&#39;ll take the proper requests and route through the
+</span><span style="color:#75715e">//    returnFromCache function, which will serve the files if they&#39;re in the cache.
+</span><span style="color:#75715e">//    Finally we&#39;ll also run those hijacked fetch requests thruogh the addToCache
+</span><span style="color:#75715e">//    function in order to proactively cache other assets as well
+</span><span style="color:#75715e">//===================================================================================
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;fetch&#39;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">event</span>) {
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">destination</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">destination</span>;
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">url</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">url</span>;
+	<span style="color:#66d9ef">if</span> ( <span style="color:#f92672">!</span><span style="color:#a6e22e">url</span>.<span style="color:#a6e22e">includes</span>(<span style="color:#e6db74">&#34;/wp-admin/&#34;</span>) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">url</span>.<span style="color:#a6e22e">includes</span>(<span style="color:#e6db74">&#34;wp-login.php&#34;</span>) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">url</span>.<span style="color:#a6e22e">includes</span>(<span style="color:#e6db74">&#34;con.txt&#34;</span>) ) {
+	  <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">respondWith</span>(<span style="color:#a6e22e">checkResponse</span>(<span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">request</span>).<span style="color:#66d9ef">catch</span>(<span style="color:#66d9ef">function</span>() {
+			<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">VERBOSE</span>) {
+		    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;[ServiceWorker] The service worker is serving this asset from cache: &#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">url</span>);
+			}
+	    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">returnFromCache</span>(<span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">request</span>)}
+	  ));
+	  <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">waitUntil</span>(<span style="color:#a6e22e">addToCache</span>(<span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">request</span>));
+	}
+});
+
+<span style="color:#75715e">//===================================================================================
+</span><span style="color:#75715e">// checkResponse function
+</span><span style="color:#75715e">// - This function will create a new Promise that will determine if a fetch&#39;s reponse
+</span><span style="color:#75715e">//    code is something other than a 404, if so it&#39;ll continue if not then it won&#39;t
+</span><span style="color:#75715e">//    attempt to proceed with the cache matching
+</span><span style="color:#75715e">//===================================================================================
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">checkResponse</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">request</span>){
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Promise(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">fulfill</span>, <span style="color:#a6e22e">reject</span>) {
+    <span style="color:#a6e22e">fetch</span>(<span style="color:#a6e22e">request</span>).<span style="color:#a6e22e">then</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">response</span>){
+      <span style="color:#75715e">//if(response.status !== 404) {
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">fulfill</span>(<span style="color:#a6e22e">response</span>)
+      <span style="color:#75715e">//} else {
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">//reject(response);
+</span><span style="color:#75715e"></span>      <span style="color:#75715e">//}
+</span><span style="color:#75715e"></span>    }, <span style="color:#a6e22e">reject</span>).<span style="color:#66d9ef">catch</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">ex</span>) {
+	    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;[ServiceWorker][Error Code &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">ex</span>.<span style="color:#a6e22e">code</span> <span style="color:#f92672">+</span><span style="color:#e6db74">&#34;] &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">ex</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">ex</span>.<span style="color:#a6e22e">message</span>);
+	  });
+  });
+};
+
+<span style="color:#75715e">//===================================================================================
+</span><span style="color:#75715e">// addToCache function
+</span><span style="color:#75715e">// - This function will handle opening the cache and adding files to it
+</span><span style="color:#75715e">// - Before we simply add any file to the cache we want to do some filtering or else
+</span><span style="color:#75715e">//    we run over our cache quota.  Also maybe you only want to cache certain types
+</span><span style="color:#75715e">//    of files, or files from specific domains and not under specific directories...
+</span><span style="color:#75715e">//===================================================================================
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">addToCache</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">request</span>){
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">destination</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">destination</span>;
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">url</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">request</span>.<span style="color:#a6e22e">url</span>;
+	<span style="color:#75715e">// Only continue to cache if the asset is from our example.com domain and not under the /wp-admin/ folder
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> ( <span style="color:#a6e22e">url</span>.<span style="color:#a6e22e">includes</span>(<span style="color:#e6db74">&#34;fiercesw.com/&#34;</span>) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">url</span>.<span style="color:#a6e22e">includes</span>(<span style="color:#e6db74">&#34;/wp-admin/&#34;</span>) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">url</span>.<span style="color:#a6e22e">includes</span>(<span style="color:#e6db74">&#34;wp-login.php&#34;</span>) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">url</span>.<span style="color:#a6e22e">includes</span>(<span style="color:#e6db74">&#34;con.txt&#34;</span>) ) {
+		<span style="color:#75715e">// We also only want to cache a certain type of asset, the more static types
+</span><span style="color:#75715e"></span>		<span style="color:#75715e">//console.log(destination);
+</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">switch</span> (<span style="color:#a6e22e">destination</span>) {
+			<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;style&#39;</span><span style="color:#f92672">:</span>
+			<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;script&#39;</span><span style="color:#f92672">:</span>
+			<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;document&#39;</span><span style="color:#f92672">:</span>
+			<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;image&#39;</span><span style="color:#f92672">:</span>
+			<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;font&#39;</span><span style="color:#f92672">:</span>
+			<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;manifest&#39;</span><span style="color:#f92672">:</span>
+			  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">caches</span>.<span style="color:#a6e22e">open</span>(<span style="color:#a6e22e">CACHE</span>).<span style="color:#a6e22e">then</span>(<span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">cache</span>) {
+			    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">fetch</span>(<span style="color:#a6e22e">request</span>).<span style="color:#a6e22e">then</span>(<span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">response</span>) {
+						<span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">VERBOSE</span>) {
+	            <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;[ServiceWorker] Added asset to offline cache: &#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">url</span>);
+						}
+            <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">cache</span>.<span style="color:#a6e22e">put</span>(<span style="color:#a6e22e">request</span>, <span style="color:#a6e22e">response</span>);
+			    }).<span style="color:#66d9ef">catch</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">ex</span>) {
+				    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;[ServiceWorker][Error Code &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">ex</span>.<span style="color:#a6e22e">code</span> <span style="color:#f92672">+</span><span style="color:#e6db74">&#34;] &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">ex</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">ex</span>.<span style="color:#a6e22e">message</span>);
+				  });
+			  });
+			<span style="color:#66d9ef">break</span>;
+			<span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
+				<span style="color:#75715e">//Nada to see here, no caching
+</span><span style="color:#75715e"></span>				<span style="color:#66d9ef">return</span>;
+			<span style="color:#66d9ef">break</span>;
+		}
+	}
+
+};
+<span style="color:#75715e">//===================================================================================
+</span><span style="color:#75715e">// returnFromCache function
+</span><span style="color:#75715e">// - This function will take a request and see if it matches a cached asset
+</span><span style="color:#75715e">//===================================================================================
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">returnFromCache</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">request</span>){
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">caches</span>.<span style="color:#a6e22e">open</span>(<span style="color:#a6e22e">CACHE</span>).<span style="color:#a6e22e">then</span>(<span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">cache</span>) {
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">cache</span>.<span style="color:#a6e22e">match</span>(<span style="color:#a6e22e">request</span>).<span style="color:#a6e22e">then</span>(<span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">matching</span>) {
+     <span style="color:#66d9ef">if</span>(<span style="color:#f92672">!</span><span style="color:#a6e22e">matching</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">matching</span>.<span style="color:#a6e22e">status</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">404</span>) {
+				<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">matching</span>) {
+					<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">cache</span>.<span style="color:#a6e22e">match</span>(<span style="color:#e6db74">&#39;/offline.html&#39;</span>);
+				}
+			 <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">cache</span>.<span style="color:#a6e22e">match</span>(<span style="color:#e6db74">&#39;/404.html&#39;</span>);
+     } <span style="color:#66d9ef">else</span> {
+       <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">matching</span>;
+     }
+    }).<span style="color:#66d9ef">catch</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">ex</span>) {
+	    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;[ServiceWorker][Error Code &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">ex</span>.<span style="color:#a6e22e">code</span> <span style="color:#f92672">+</span><span style="color:#e6db74">&#34;] &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">ex</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">ex</span>.<span style="color:#a6e22e">message</span>);
+	  });
+  }).<span style="color:#66d9ef">catch</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">ex</span>) {
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;[ServiceWorker][Error Code &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">ex</span>.<span style="color:#a6e22e">code</span> <span style="color:#f92672">+</span><span style="color:#e6db74">&#34;] &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">ex</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">ex</span>.<span style="color:#a6e22e">message</span>);
+  });
+};
+</code></pre></div></p>
+
+<p><strong>/wp-content/themes/THEME_NAME/global_templates/pwa_header.php</strong> - This file is included across all of my various header.php files in my WordPress install.  Basically the idea is to load this across your site inside the <em>&lt;head&gt;</em> tag.  It will load the icons you generated, set some additional manifest info, styles for an Add-to-Homescreen banner, and the needed JS to register/use the service worker and all the extras built on top of it</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;apple-touch-icon&#34;</span> <span style="color:#a6e22e">sizes</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;180x180&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/apple-touch-icon.png&#34;</span>&gt;
+&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;icon&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;image/png&#34;</span> <span style="color:#a6e22e">sizes</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;32x32&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/favicon-32x32.png&#34;</span>&gt;
+&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;icon&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;image/png&#34;</span> <span style="color:#a6e22e">sizes</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;192x192&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/android-chrome-192x192.png&#34;</span>&gt;
+&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;icon&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;image/png&#34;</span> <span style="color:#a6e22e">sizes</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;16x16&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/favicon-16x16.png&#34;</span>&gt;
+&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;manifest&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/site.webmanifest&#34;</span>&gt;
+&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mask-icon&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/safari-pinned-tab.svg&#34;</span> <span style="color:#a6e22e">color</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#1b75bc&#34;</span>&gt;
+&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;shortcut icon&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/favicon.ico&#34;</span>&gt;
+&lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;msapplication-TileColor&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#fafafa&#34;</span>&gt;
+&lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;theme-color&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#fafafa&#34;</span>&gt;
+&lt;<span style="color:#f92672">style</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/css&#34;</span>&gt;
+  .<span style="color:#a6e22e">a2hs-banner</span> {
+	<span style="color:#66d9ef">display</span>: <span style="color:#66d9ef">none</span>;
+	<span style="color:#66d9ef">position</span>: <span style="color:#66d9ef">fixed</span>;
+	<span style="color:#66d9ef">width</span>: calc(<span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">4</span><span style="color:#66d9ef">rem</span>);
+	<span style="color:#66d9ef">padding</span>: <span style="color:#ae81ff">1</span><span style="color:#66d9ef">rem</span>;
+	<span style="color:#66d9ef">bottom</span>: <span style="color:#ae81ff">0</span>;
+	<span style="color:#66d9ef">background</span>: rgb(<span style="color:#ae81ff">12</span>, <span style="color:#ae81ff">121</span>, <span style="color:#ae81ff">177</span>);
+	<span style="color:#66d9ef">color</span>: rgb(<span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">255</span>, <span style="color:#ae81ff">255</span>);
+	<span style="color:#66d9ef">z-index</span>: <span style="color:#ae81ff">99999</span>;
+	<span style="color:#66d9ef">margin</span>: <span style="color:#ae81ff">2</span><span style="color:#66d9ef">rem</span>;
+	<span style="color:#66d9ef">box-shadow</span>: <span style="color:#ae81ff">0</span><span style="color:#66d9ef">px</span> <span style="color:#ae81ff">0</span><span style="color:#66d9ef">px</span> <span style="color:#ae81ff">8</span><span style="color:#66d9ef">px</span> <span style="color:#ae81ff">-1</span><span style="color:#66d9ef">px</span> rgba(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0.45</span>);
+  }
+&lt;/<span style="color:#f92672">style</span>&gt;
+&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/javascript&#34;</span>&gt;
+  <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">setCookie</span>(<span style="color:#a6e22e">cname</span>, <span style="color:#a6e22e">cvalue</span>, <span style="color:#a6e22e">exdays</span>) {
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">d</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Date();
+    <span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">setTime</span>(<span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">getTime</span>() <span style="color:#f92672">+</span> (<span style="color:#a6e22e">exdays</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">24</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>));
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">expires</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;expires=&#34;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">d</span>.<span style="color:#a6e22e">toUTCString</span>();
+    document.<span style="color:#a6e22e">cookie</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">cname</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;=&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">cvalue</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;;&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">expires</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;;&#34;</span>;
+  }
+
+  <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getCookie</span>(<span style="color:#a6e22e">cname</span>) {
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">cname</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;=&#34;</span>;
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">ca</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">cookie</span>.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#39;;&#39;</span>);
+    <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">ca</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+      <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">c</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ca</span>[<span style="color:#a6e22e">i</span>];
+      <span style="color:#66d9ef">while</span> (<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">charAt</span>(<span style="color:#ae81ff">0</span>) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39; &#39;</span>) {
+        <span style="color:#a6e22e">c</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">substring</span>(<span style="color:#ae81ff">1</span>);
+      }
+      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">indexOf</span>(<span style="color:#a6e22e">name</span>) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">substring</span>(<span style="color:#a6e22e">name</span>.<span style="color:#a6e22e">length</span>, <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">length</span>);
+      }
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;&#34;</span>;
+  }
+  <span style="color:#75715e">// closeAndIgnore function
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// - This just binds to the PWA banners/modals such as the Offline or Add-to-Homescreen notice and sets a cookie in order to not display it again for the next 30 days
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">closeAndIgnore</span>(<span style="color:#a6e22e">target</span>,<span style="color:#a6e22e">name</span>) {
+    <span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">parentNode</span>.<span style="color:#a6e22e">parentNode</span>.<span style="color:#a6e22e">removeChild</span>(<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">parentNode</span>);
+    <span style="color:#a6e22e">setCookie</span>(<span style="color:#e6db74">&#34;ignorePopup-&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">name</span>, <span style="color:#e6db74">&#34;true&#34;</span>, <span style="color:#ae81ff">30</span>);
+  }
+  <span style="color:#75715e">// additionalConnectionTest function
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// - The only reason this exists is because Chrome has a bug that sometimes returns the wrong value for navigator.onLine and so desktop clients will get the offline banner when operating normally...
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// - Otherwise, this function basically just pings a file with a rangom URI to break cache in order to do a &#34;real&#34; &#34;ping&#34; &#34;test&#34;
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">additionalConnectionTest</span>() {
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Running additional connection test...&#34;</span>)
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Http</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">XMLHttpRequest</span>();
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">url</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;https://fiercesw.com/con.txt?v=&#39;</span> <span style="color:#f92672">+</span> Math.<span style="color:#a6e22e">floor</span>(Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">*</span> <span style="color:#ae81ff">1001</span>);
+    <span style="color:#a6e22e">Http</span>.<span style="color:#a6e22e">timeout</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2000</span>;
+    <span style="color:#a6e22e">Http</span>.<span style="color:#a6e22e">open</span>(<span style="color:#e6db74">&#34;HEAD&#34;</span>, <span style="color:#a6e22e">url</span>, <span style="color:#66d9ef">true</span>);
+    <span style="color:#a6e22e">Http</span>.<span style="color:#a6e22e">send</span>();
+    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">processRequest</span>(<span style="color:#a6e22e">e</span>) {
+      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">Http</span>.<span style="color:#a6e22e">readyState</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">4</span>) {
+        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">Http</span>.<span style="color:#a6e22e">status</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">200</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">Http</span>.<span style="color:#a6e22e">status</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">304</span>) {
+          <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Additional connection test successful&#34;</span>);
+          <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+        } <span style="color:#66d9ef">else</span> {
+          <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Additional connection test timed out&#34;</span>);
+          <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+        }
+      }
+      <span style="color:#66d9ef">else</span> {
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+      }
+    }
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">Http</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;readystatechange&#34;</span>, <span style="color:#a6e22e">processRequest</span>, <span style="color:#66d9ef">false</span>);
+  }
+
+  <span style="color:#75715e">// updateOnlineStatus function
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// - This function adds the &#34;You are offline&#34; notice banner at the bottom of the page when the device is offline or removes it otherwise.
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">updateOnlineStatus</span>() {
+    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>window.<span style="color:#a6e22e">navigator</span>.<span style="color:#a6e22e">onLine</span>) {
+      <span style="color:#75715e">//Do an additional connection test...Chrome bug...
+</span><span style="color:#75715e"></span>      <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">additionalConnectionTest</span>()) {
+        <span style="color:#66d9ef">if</span> ((document.<span style="color:#a6e22e">querySelectorAll</span>(<span style="color:#e6db74">&#39;.offlineNotice&#39;</span>).<span style="color:#a6e22e">length</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span>) <span style="color:#f92672">&amp;&amp;</span> (<span style="color:#a6e22e">getCookie</span>(<span style="color:#e6db74">&#34;ignorePopup-offlineNotice&#34;</span>) <span style="color:#f92672">!==</span> <span style="color:#e6db74">&#34;true&#34;</span>)) {
+          <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">elem</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#39;div&#39;</span>);
+          <span style="color:#a6e22e">elem</span>.<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">cssText</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;position:fixed;width:100%;padding:1rem;bottom:0;background:#0c79b1;color:#FFF;z-index:99999;&#39;</span>;
+          <span style="color:#a6e22e">elem</span>.<span style="color:#a6e22e">className</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;offlineNotice&#39;</span>;
+          <span style="color:#a6e22e">elem</span>.<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&lt;a style=&#39;margin:0 0 0 0.5rem;float:right;padding: 0.25rem 0.5rem;background:rgba(255,255,255,0.4);color: #FFF;font-weight: bold;&#39; href=&#39;#&#39; onclick=&#39;closeAndIgnore(this,\&#34;offlineNotice\&#34;);&#39;&gt;X&lt;/a&gt;&lt;p style=&#39;margin:0.25rem 0;&#39;&gt;&lt;strong&gt;You&#39;re offline &amp;dash; &lt;/strong&gt; It seems as if you&#39;re disconnected from the Internet, but some resources are still available.&lt;/p&gt;&#34;</span>;
+          document.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">appendChild</span>(<span style="color:#a6e22e">elem</span>);
+        }
+      }
+    }
+    <span style="color:#66d9ef">else</span> {
+      <span style="color:#66d9ef">if</span> (document.<span style="color:#a6e22e">querySelectorAll</span>(<span style="color:#e6db74">&#39;.offlineNotice&#39;</span>).<span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">elems</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelectorAll</span>(<span style="color:#e6db74">&#39;.offlineNotice&#39;</span>);
+        <span style="color:#66d9ef">for</span>(<span style="color:#a6e22e">i</span><span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;<span style="color:#a6e22e">i</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">elems</span>.<span style="color:#a6e22e">length</span>;<span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+          <span style="color:#a6e22e">elems</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">parentElement</span>.<span style="color:#a6e22e">removeChild</span>(<span style="color:#a6e22e">elems</span>[<span style="color:#a6e22e">i</span>]);
+        }
+      }
+    }
+    <span style="color:#75715e">//Live coverage
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">//document.querySelector(&#39;.connection&#39;).innerHTML = window.navigator.onLine;
+</span><span style="color:#75715e"></span>  }
+
+  <span style="color:#75715e">//This is the service worker with the combined offline experience (Offline page + Offline copy of pages)
+</span><span style="color:#75715e"></span>
+  <span style="color:#75715e">//Add this below content to your HTML page, or add the js file to your page at the very top to register service worker
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">navigator</span>.<span style="color:#a6e22e">serviceWorker</span>.<span style="color:#a6e22e">controller</span>) {
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;[ServiceWorker] Active service worker found, no need to register&#39;</span>);
+  } <span style="color:#66d9ef">else</span> {
+
+  <span style="color:#75715e">//Register the ServiceWorker
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">navigator</span>.<span style="color:#a6e22e">serviceWorker</span>.<span style="color:#a6e22e">register</span>(<span style="color:#e6db74">&#39;/sw.js&#39;</span>, {
+      <span style="color:#a6e22e">scope</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;./&#39;</span>
+    }).<span style="color:#a6e22e">then</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">reg</span>) {
+      <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;[ServiceWorker] Service worker has been registered for scope: &#39;</span><span style="color:#f92672">+</span> <span style="color:#a6e22e">reg</span>.<span style="color:#a6e22e">scope</span>);
+    }).<span style="color:#66d9ef">catch</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">ex</span>) {
+      <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;[ServiceWorker][Error Code &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">ex</span>.<span style="color:#a6e22e">code</span> <span style="color:#f92672">+</span><span style="color:#e6db74">&#34;] &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">ex</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">ex</span>.<span style="color:#a6e22e">message</span>);
+    });
+  }
+  <span style="color:#75715e">// Vanilla JS&#39; jQuery.ready lolololo
+</span><span style="color:#75715e"></span>  window.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;load&#39;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">ev</span>) {
+
+    <span style="color:#75715e">// Online/offline detection and banner alert
+</span><span style="color:#75715e"></span>    window.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;online&#39;</span>,  <span style="color:#a6e22e">updateOnlineStatus</span>);
+    window.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;offline&#39;</span>, <span style="color:#a6e22e">updateOnlineStatus</span>);
+    <span style="color:#a6e22e">updateOnlineStatus</span>();
+
+    <span style="color:#75715e">//Setup Add to Home Screen button triggers
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">getCookie</span>(<span style="color:#e6db74">&#34;ignorePopup-a2hs&#34;</span>) <span style="color:#f92672">!==</span> <span style="color:#e6db74">&#34;true&#34;</span>) {
+      <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">a2hs</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#39;div&#39;</span>);
+      <span style="color:#a6e22e">a2hs</span>.<span style="color:#a6e22e">className</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;a2hs-banner&#39;</span>;
+      <span style="color:#a6e22e">a2hs</span>.<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&lt;a style=&#39;margin:0 0 0 0.5rem;float:right;padding: 0.25rem 0.5rem;&#39; class=&#39;btn btn-light&#39; href=&#39;#&#39; id=&#39;installA2HS&#39;&gt;Add&lt;/a&gt;&lt;a style=&#39;margin: 0 1rem 0 0;float: left;padding: 0.25rem 0.5rem;background:rgba(255,255,255,0.4);color: #FFF;font-weight: bold;&#39; href=&#39;#&#39; onclick=&#39;closeAndIgnore(this,\&#34;a2hs\&#34;);&#39; class=&#39;btn btn-link&#39;&gt;X&lt;/a&gt;&lt;p style=&#39;margin:0.25rem 0;&#39;&gt;&lt;strong&gt;Fierce at your Fingertips -&lt;/strong&gt; Get the Fierce Software Web App&lt;/p&gt;&#34;</span>;
+      document.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">appendChild</span>(<span style="color:#a6e22e">a2hs</span>);
+
+      <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">deferredPrompt</span>;
+      window.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;beforeinstallprompt&#39;</span>, (<span style="color:#a6e22e">event</span>) =&gt; {
+
+        <span style="color:#75715e">// Prevent Chrome 67 and earlier from automatically showing the prompt
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">preventDefault</span>();
+
+        <span style="color:#75715e">// Stash the event so it can be triggered later.
+</span><span style="color:#75715e"></span>        <span style="color:#a6e22e">deferredPrompt</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">event</span>;
+
+        <span style="color:#75715e">// Attach the install prompt to a user gesture
+</span><span style="color:#75715e"></span>        document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;#installA2HS&#39;</span>).<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>, <span style="color:#a6e22e">event</span> =&gt; {
+
+          <span style="color:#75715e">// Show the prompt
+</span><span style="color:#75715e"></span>          <span style="color:#a6e22e">deferredPrompt</span>.<span style="color:#a6e22e">prompt</span>();
+
+          <span style="color:#75715e">// Wait for the user to respond to the prompt
+</span><span style="color:#75715e"></span>          <span style="color:#a6e22e">deferredPrompt</span>.<span style="color:#a6e22e">userChoice</span>
+            .<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">choiceResult</span>) =&gt; {
+              <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">choiceResult</span>.<span style="color:#a6e22e">outcome</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;accepted&#39;</span>) {
+                <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;[ServiceWorker][A2HS] User accepted the A2HS prompt&#39;</span>);
+              } <span style="color:#66d9ef">else</span> {
+                <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;[ServiceWorker][A2HS] User dismissed the A2HS prompt&#39;</span>);
+              }
+              <span style="color:#a6e22e">deferredPrompt</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span>;
+            }).<span style="color:#66d9ef">catch</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">ex</span>) {
+              <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;[ServiceWorker][A2HS][Error Code &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">ex</span>.<span style="color:#a6e22e">code</span> <span style="color:#f92672">+</span><span style="color:#e6db74">&#34;] &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">ex</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">ex</span>.<span style="color:#a6e22e">message</span>);
+            });
+        });
+        <span style="color:#75715e">// Update UI notify the user they can add to home screen
+</span><span style="color:#75715e"></span>        document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;.a2hs-banner&#39;</span>).<span style="color:#a6e22e">style</span>.<span style="color:#a6e22e">display</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;block&#39;</span>;
+
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+      });
+    }
+
+  });
+
+&lt;/<span style="color:#f92672">script</span>&gt;</code></pre></div>
+
+<p><strong>nginx config</strong> The configured site has a 404 directive to point to the /404.html file we have at our webroot
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">error_page <span style="color:#ae81ff">404</span> /404.html;</code></pre></div></p>
+
+<p>Now what I have is the <a href="https://fiercesw.com">Fierce Software</a> loading lickity-split, caching resources, providing offline guidance and fallbacks, an integrated 404 page, Add-to-Homescreen functionality, and efficient routing!  For some reason the Service Worker and Chrome kept returning extra responses for a while which is why some things are commented out in the <em>sw.js - checkResponse</em> function - the PWABuilder code isn&rsquo;t quite correct&hellip;</p>
+
+<div class="row text-center">
+<figure class="col-sm-12 col-md-4"><a href="/content-stuff/Screenshot_20190103-221758_Chrome.jpg" target="_blank">
+    <img src="/images/content-stuff/Screenshot_20190103-221758_Chrome.jpg"/> </a>
+</figure>
+
+<figure class="col-sm-12 col-md-4"><a href="/content-stuff/Screenshot_20190103-221827_Chrome.jpg" target="_blank">
+    <img src="/images/content-stuff/Screenshot_20190103-221827_Chrome.jpg"/> </a>
+</figure>
+
+<figure class="col-sm-12 col-md-4"><a href="/content-stuff/Screenshot_20190103-221847_Chrome.jpg" target="_blank">
+    <img src="/images/content-stuff/Screenshot_20190103-221847_Chrome.jpg"/> </a>
+</figure>
+
+<figure class="col-sm-12 col-md-4 offset-md-4"><a href="/content-stuff/Screenshot_20190103-221922_Chrome.jpg" target="_blank">
+    <img src="/images/content-stuff/Screenshot_20190103-221922_Chrome.jpg"/> </a>
+</figure>
+
+</div>
+
+</div>
+
+  
+<footer class='entry-footer'>
+  <div class='container sep-before'><div class='last-updated'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34" />
+  <polygon points="18 2 22 6 12 16 8 16 8 12 18 2" />
+  
+</svg>
+<span class='screen-reader-text'>Last updated: </span>
+      <time class='entry-date' datetime='2019-07-22T23:25:39-05:00'>2019, Jul 22</time>
+    </div><div class='tags'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+<span class='screen-reader-text'>Tags: </span><a class='tag' href='/tags/progressive-web-design/'>progressive web design</a>, <a class='tag' href='/tags/pwa/'>pwa</a>, <a class='tag' href='/tags/service-workers/'>service workers</a>, <a class='tag' href='/tags/javascript/'>javascript</a>, <a class='tag' href='/tags/js/'>js</a>, <a class='tag' href='/tags/fierce-software/'>Fierce Software</a></div>
+
+  </div>
+</footer>
+
+
+</article>
+
+<nav class='entry-nav'>
+  <div class='container'>
+  <div class="row"><div class='prev-entry sep-before col-sm-12 col-md-6'>
+      <a href='/blog/how-to-passing-the-certified-cloudbees-jenkins-engineer-exam/'>
+        <span aria-hidden='true'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="20" y1="12" x2="4" y2="12"/>
+  <polyline points="10 18 4 12 10 6"/>
+  
+</svg>
+ Previous</span>
+        <span class='screen-reader-text'>Previous post: </span>How-to: Passing the Certified Cloudbees Jenkins Engineer exam</a>
+    </div><div class='next-entry sep-before col-sm-12 col-md-6 text-right'>
+      <a href='/blog/a-third-of-the-internet-is-vulnerable/'>
+        <span class='screen-reader-text'>Next post: </span>A Third of the Internet Is Vulnerable<span aria-hidden='true'>Next <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="4" y1="12" x2="20" y2="12"/>
+  <polyline points="14 6 20 12 14 18"/>
+  
+</svg>
+</span>
+      </a>
+    </div></div>
+  </div>
+</nav>
+
+
+
+
+      </main>
+
+      <footer id='footer' class='footer'>
+        <div class='container sep-before'><section class='widget widget-social_menu sep-after'><nav aria-label='Social Menu'>
+    <ul><li>
+        <a href='https://github.com/kenmoini' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Github account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://twitter.com/notkemo' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Twitter account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://instagram.com/kenmoini' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Instagram account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+  <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='mailto:ken@kenmoini.com' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Contact via Email</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+  <polyline points="22,6 12,13 2,6"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://linkedin.com/in/kenmoini' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Linkedin account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+  <rect x="2" y="9" width="4" height="12"/>
+  <circle cx="4" cy="4" r="2"/>
+  
+</svg>
+</a>
+      </li></ul>
+  </nav>
+</section><div class='copyright'>
+  <p></p>
+</div>
+
+          
+          
+          <small style="color:#333" class="muted"><em>Rev 58795f5</em></small>
+          
+        </div>
+      </footer>
+
+    </div>
+  </div><script>window.__assets_js_src ="/assets/js/"</script>
+
+<script src='https://www.kenmoini.com/assets/js/main.9e5c4cf4.js'></script><script src='/js/custom.js'></script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>headphones on Ken Moini</title>
+    <link>https://www.kenmoini.com/tags/headphones/</link>
+    <description>Recent content in headphones on Ken Moini</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 15 May 2018 22:31:48 -0500</lastBuildDate>
+    
+	<atom:link href="https://www.kenmoini.com/tags/headphones/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Wrangling Bluetooth in RHEL &amp; CentOS 7</title>
+      <link>https://www.kenmoini.com/blog/wrangling-bluetooth-on-rhel-and-centos/</link>
+      <pubDate>Tue, 15 May 2018 22:31:48 -0500</pubDate>
+      
+      <guid>https://www.kenmoini.com/blog/wrangling-bluetooth-on-rhel-and-centos/</guid>
+      <description>I recently started as the Lead Solution Architect at Fierce Software. It’s been an excellent experience so far and I’m excited to be working with such a great team. At Fierce Software we help Public Sector entities find enterprise ready open source solutions. Our portfolio of vendors is deliberately diverse because in today’s enterprise multi-vendor, multi-vertical solutions are commonplace. No one’s running all Cisco network gear, Cisco servers, annnnd then what’s after that?</description>
+    </item>
+    
+  </channel>
+</rss>

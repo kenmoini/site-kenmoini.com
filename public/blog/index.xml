@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog on Ken Moini</title>
+    <link>https://www.kenmoini.com/blog/</link>
+    <description>Recent content in Blog on Ken Moini</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://www.kenmoini.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How-to: Passing the Amazon Web Services Solution Architect Exam</title>
+      <link>https://www.kenmoini.com/blog/how-to-passing-the-amazon-web-services-solution-architect-exam/</link>
+      <pubDate>Sun, 21 Jul 2019 17:41:38 -0500</pubDate>
+      
+      <guid>https://www.kenmoini.com/blog/how-to-passing-the-amazon-web-services-solution-architect-exam/</guid>
+      <description>In my line of work it&amp;rsquo;s easy to hit a few roadbumps and lose momentum. Burn-out can set in quickly and Imposter Syndome is hard to defeat at times. I&amp;rsquo;ve found a few tricks to manage these issues:
+ Get decent sleep - I used to drink Jolts and pull all-nighters like it was the cool thing to do in my youth. Now that system doesn&amp;rsquo;t quite work that well and it&amp;rsquo;s far from sustainable.</description>
+    </item>
+    
+    <item>
+      <title>Kubernetes on Linode – A Quick Start of Sorts</title>
+      <link>https://www.kenmoini.com/blog/kubernetes-on-linode-a-quick-start-of-sorts/</link>
+      <pubDate>Mon, 08 Jul 2019 22:31:48 -0500</pubDate>
+      
+      <guid>https://www.kenmoini.com/blog/kubernetes-on-linode-a-quick-start-of-sorts/</guid>
+      <description>When I was at Red Hat Summit, I spent the last day in some sweatpants and meandered about the showroom floor trying to hide my Executive Exchange badge from all the sales vultures. They announced over the loudspeaker that they were closing up shop soon, and so I made my last round across the room. To my surprise, there were rows I hadn&amp;rsquo;t gone to yet – the place was massive.</description>
+    </item>
+    
+    <item>
+      <title>GitLab Container Registry with Minio Custom S3 Endpoint</title>
+      <link>https://www.kenmoini.com/blog/gitlab-container-registry-with-minio-custom-s3-endpoint/</link>
+      <pubDate>Sun, 07 Apr 2019 22:31:48 -0500</pubDate>
+      
+      <guid>https://www.kenmoini.com/blog/gitlab-container-registry-with-minio-custom-s3-endpoint/</guid>
+      <description>Every time I get on this site to try to write something and post a new blog entry, it just ends up in the Elephant Graveyard of Drafts.
+I have half a dozen other posts waiting to be completed, on things such as how WordPress causes 1/3rd of the Internet to be vulnerable due to shipping old code, to a top-to-bottom view of Progressive Web Apps and Service Workers (super fun), OpenSCAP, and GPS NTP servers.</description>
+    </item>
+    
+    <item>
+      <title>A Third of the Internet Is Vulnerable</title>
+      <link>https://www.kenmoini.com/blog/a-third-of-the-internet-is-vulnerable/</link>
+      <pubDate>Fri, 04 Jan 2019 20:38:59 -0500</pubDate>
+      
+      <guid>https://www.kenmoini.com/blog/a-third-of-the-internet-is-vulnerable/</guid>
+      <description>So I didn&amp;rsquo;t want to end up working on something all night long today, it&amp;rsquo;s Friday after all. What I decided to do is clean up, test, and release some code I have running on my favorite guenea pig - my work&amp;rsquo;s website.
+Project: Multiple WordPress installations Task: Fix vulnerabilities found in the version of jQuery and jQuery UI that are shipped with WordPress Lighthouse is a cool tool I use in web development, helps test and hone in on best practices, performance improvements, SEO, PWA, and more.</description>
+    </item>
+    
+    <item>
+      <title>PWA-Haaat</title>
+      <link>https://www.kenmoini.com/blog/pwa-haaat/</link>
+      <pubDate>Thu, 03 Jan 2019 22:31:48 -0500</pubDate>
+      
+      <guid>https://www.kenmoini.com/blog/pwa-haaat/</guid>
+      <description>I&amp;rsquo;m sure you&amp;rsquo;ve heard of RWD, or Responsive Web Design. HA, that&amp;rsquo;s soooo two-thousand-and-late
+What&amp;rsquo;s hot on the streets these days is PWA, or Progressive Web Applications. You know how Google has pretty much taken over how the web is shaped due to our consumption and reliance and development around Chrome? Yeah, well they&amp;rsquo;ve rolled out AMP which I&amp;rsquo;m sure you&amp;rsquo;ve seen, but otherwise there&amp;rsquo;s another thing - these Progressive Web Applications.</description>
+    </item>
+    
+    <item>
+      <title>How-to: Passing the Certified Cloudbees Jenkins Engineer exam</title>
+      <link>https://www.kenmoini.com/blog/how-to-passing-the-certified-cloudbees-jenkins-engineer-exam/</link>
+      <pubDate>Thu, 01 Nov 2018 22:31:48 -0500</pubDate>
+      
+      <guid>https://www.kenmoini.com/blog/how-to-passing-the-certified-cloudbees-jenkins-engineer-exam/</guid>
+      <description>Well, add another notch in my tool belt, I recently became a CCJE or CCJPE or whatever they’ll call it in a few months. Basically, that means I’ve attained the recognition of being a Certified Cloudbees Jenkins Engineer.
+What the frack?  If you haven’t heard of DevOps, it’s basically the new way of doing software development. Ok, it’s not that new, but it’s now something that can’t be avoided.</description>
+    </item>
+    
+    <item>
+      <title>Quick n’ Dirty – Adding disks to Proxmox with LVM</title>
+      <link>https://www.kenmoini.com/blog/quick-n-dirty-adding-disks-to-proxmox/</link>
+      <pubDate>Mon, 08 Oct 2018 22:31:48 -0500</pubDate>
+      
+      <guid>https://www.kenmoini.com/blog/quick-n-dirty-adding-disks-to-proxmox/</guid>
+      <description>Proxmox LVM Expansion, adding additional disks to your Proxmox host for VM storage. No real story behind this post, just something simple and probably more of a documentation of the process for myself more than anything.
+In case you were just CRAVING the story and background behind this…well, I recently got a few new (to me) Dell R710 servers, pretty decked out. Booting Proxmox off of a 128gb USB 3.</description>
+    </item>
+    
+    <item>
+      <title>Software Defined Networking with Linux</title>
+      <link>https://www.kenmoini.com/blog/software-defined-networking-with-linux/</link>
+      <pubDate>Mon, 01 Oct 2018 22:31:48 -0500</pubDate>
+      
+      <guid>https://www.kenmoini.com/blog/software-defined-networking-with-linux/</guid>
+      <description>Well well well, it’s been a while y’all.
+Been busy developing and writing a few things, some more exciting stuff coming up in the pipeline. A lot of the projects I’m working on have to kind of sort of “plug together” and to do a lot of this I use open-source solutions and a lot of automation. Today I’d like to show you how to setup a Linux based router, complete with packet forwarding, DHCP, DNS, and dare I even say NTP!</description>
+    </item>
+    
+    <item>
+      <title>Rolling up Let’s Encrypt on Ansible Tower’s UI</title>
+      <link>https://www.kenmoini.com/blog/rolling-up-lets-encrypt-on-ansible-towers-ui/</link>
+      <pubDate>Sat, 14 Jul 2018 22:31:48 -0500</pubDate>
+      
+      <guid>https://www.kenmoini.com/blog/rolling-up-lets-encrypt-on-ansible-towers-ui/</guid>
+      <description>The other day someone asked me what I do for fun.
+&amp;ldquo;Fun&amp;rdquo; really has a few different definitions for me, and I’d say for most people. It could be entertainment, guttural satisfaction, leisurely adventuring about, or maybe for some slightly compulsive people like me, accomplishing a task. Something I’m kind of overly compulsive about is proper SSL implementation and PKI.
+So this morning I was having LOADS of fun. My fast just started to kick in with some of the good energy and ‘umph’ so I was feeling great.</description>
+    </item>
+    
+    <item>
+      <title>Wrangling Bluetooth in RHEL &amp; CentOS 7</title>
+      <link>https://www.kenmoini.com/blog/wrangling-bluetooth-on-rhel-and-centos/</link>
+      <pubDate>Tue, 15 May 2018 22:31:48 -0500</pubDate>
+      
+      <guid>https://www.kenmoini.com/blog/wrangling-bluetooth-on-rhel-and-centos/</guid>
+      <description>I recently started as the Lead Solution Architect at Fierce Software. It’s been an excellent experience so far and I’m excited to be working with such a great team. At Fierce Software we help Public Sector entities find enterprise ready open source solutions. Our portfolio of vendors is deliberately diverse because in today’s enterprise multi-vendor, multi-vertical solutions are commonplace. No one’s running all Cisco network gear, Cisco servers, annnnd then what’s after that?</description>
+    </item>
+    
+  </channel>
+</rss>

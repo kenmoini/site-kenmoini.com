@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ansible on Ken Moini</title>
+    <link>https://www.kenmoini.com/tags/ansible/</link>
+    <description>Recent content in ansible on Ken Moini</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 07 Apr 2019 22:31:48 -0500</lastBuildDate>
+    
+	<atom:link href="https://www.kenmoini.com/tags/ansible/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>GitLab Container Registry with Minio Custom S3 Endpoint</title>
+      <link>https://www.kenmoini.com/blog/gitlab-container-registry-with-minio-custom-s3-endpoint/</link>
+      <pubDate>Sun, 07 Apr 2019 22:31:48 -0500</pubDate>
+      
+      <guid>https://www.kenmoini.com/blog/gitlab-container-registry-with-minio-custom-s3-endpoint/</guid>
+      <description>Every time I get on this site to try to write something and post a new blog entry, it just ends up in the Elephant Graveyard of Drafts.
+I have half a dozen other posts waiting to be completed, on things such as how WordPress causes 1/3rd of the Internet to be vulnerable due to shipping old code, to a top-to-bottom view of Progressive Web Apps and Service Workers (super fun), OpenSCAP, and GPS NTP servers.</description>
+    </item>
+    
+    <item>
+      <title>Rolling up Let’s Encrypt on Ansible Tower’s UI</title>
+      <link>https://www.kenmoini.com/blog/rolling-up-lets-encrypt-on-ansible-towers-ui/</link>
+      <pubDate>Sat, 14 Jul 2018 22:31:48 -0500</pubDate>
+      
+      <guid>https://www.kenmoini.com/blog/rolling-up-lets-encrypt-on-ansible-towers-ui/</guid>
+      <description>The other day someone asked me what I do for fun.
+&amp;ldquo;Fun&amp;rdquo; really has a few different definitions for me, and I’d say for most people. It could be entertainment, guttural satisfaction, leisurely adventuring about, or maybe for some slightly compulsive people like me, accomplishing a task. Something I’m kind of overly compulsive about is proper SSL implementation and PKI.
+So this morning I was having LOADS of fun. My fast just started to kick in with some of the good energy and ‘umph’ so I was feeling great.</description>
+    </item>
+    
+  </channel>
+</rss>

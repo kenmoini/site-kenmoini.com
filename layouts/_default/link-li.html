@@ -1,0 +1,16 @@
+    <li class='item row'>
+        <div class='col-sm-12 col-md-2'>
+            <small>{{ partial "list/date" . }}</small>
+        </div>
+        <header class='item-header col-sm-12 col-md-8'>
+            <h3 class='item-title'>
+            <a href="{{ .Params.linklocation }}">
+                {{- .Title -}} {{ if .Params.deprecated }} <span class="deprecated_title">( {{- i18n "deprecatedHint" -}} )</span> {{ end }}
+            </a>
+            <br /><small>{{ .Params.linklocation }}</small>
+            </h3>
+        </header>
+        <footer class="col-sm-12 col-md-8 offset-md-2 mt-3">
+                <strong>Tags</strong>{{ range .Params.tags }} <span class="badge badge-info">{{ . }}</span> {{ end }}
+        </footer>
+    </li>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cje on Ken Moini</title>
+    <link>https://www.kenmoini.com/tags/cje/</link>
+    <description>Recent content in cje on Ken Moini</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 01 Nov 2018 22:31:48 -0500</lastBuildDate>
+    
+	<atom:link href="https://www.kenmoini.com/tags/cje/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>How-to: Passing the Certified Cloudbees Jenkins Engineer exam</title>
+      <link>https://www.kenmoini.com/blog/how-to-passing-the-certified-cloudbees-jenkins-engineer-exam/</link>
+      <pubDate>Thu, 01 Nov 2018 22:31:48 -0500</pubDate>
+      
+      <guid>https://www.kenmoini.com/blog/how-to-passing-the-certified-cloudbees-jenkins-engineer-exam/</guid>
+      <description>Well, add another notch in my tool belt, I recently became a CCJE or CCJPE or whatever they’ll call it in a few months. Basically, that means I’ve attained the recognition of being a Certified Cloudbees Jenkins Engineer.
+What the frack?  If you haven’t heard of DevOps, it’s basically the new way of doing software development. Ok, it’s not that new, but it’s now something that can’t be avoided.</description>
+    </item>
+    
+  </channel>
+</rss>

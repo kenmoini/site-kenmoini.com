@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang='en'><head>
+  <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content='So I didn&rsquo;t want to end up working on something all night long today, it&rsquo;s Friday after all. What I decided to do is clean up, test, and release some code I have running on my favorite guenea pig - my work&rsquo;s website.
+Project: Multiple WordPress installations Task: Fix vulnerabilities found in the version of jQuery and jQuery UI that are shipped with WordPress Lighthouse is a cool tool I use in web development, helps test and hone in on best practices, performance improvements, SEO, PWA, and more.'>
+<meta name='theme-color' content='#de0066'>
+
+<meta property='og:title' content='A Third of the Internet Is Vulnerable - Ken Moini'>
+<meta property='og:description' content='So I didn&rsquo;t want to end up working on something all night long today, it&rsquo;s Friday after all. What I decided to do is clean up, test, and release some code I have running on my favorite guenea pig - my work&rsquo;s website.
+Project: Multiple WordPress installations Task: Fix vulnerabilities found in the version of jQuery and jQuery UI that are shipped with WordPress Lighthouse is a cool tool I use in web development, helps test and hone in on best practices, performance improvements, SEO, PWA, and more.'>
+<meta property='og:url' content='https://www.kenmoini.com/blog/a-third-of-the-internet-is-vulnerable/'>
+<meta property='og:site_name' content='Ken Moini'>
+<meta property='og:type' content='article'><meta property='article:section' content='blog'><meta property='article:tag' content='WordPress'><meta property='article:tag' content='jQuery'><meta property='article:tag' content='jQuery UI'><meta property='article:tag' content='JavaScript'><meta property='article:tag' content='security'><meta property='article:tag' content='vulnerability'><meta property='article:published_time' content='2019-01-04T20:38:59-05:00'/><meta property='article:modified_time' content='2019-07-22T23:25:39-05:00'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@notkemo'>
+
+<meta name="generator" content="Hugo 0.55.6" />
+
+  <title>A Third of the Internet Is Vulnerable - Ken Moini</title>
+  <link rel='canonical' href='https://www.kenmoini.com/blog/a-third-of-the-internet-is-vulnerable/'>
+  
+  
+  <link rel='icon' href='/favicon.ico'>
+<link rel='stylesheet' href='/assets/css/main.fb20af92.css'><link rel='stylesheet' href='/css/custom.css'><style>
+    :root{--color-accent:#de0066;}
+    blockquote { border-left: .2em solid#de0066;}
+    :root{background-color:#000;}
+    body{color:#EEE;}
+    .title, h1, h2, h3, h4, h5, h6 {color:#EEE;}
+    a, .menu a, .sidebar-toggler span, .sub-menu-toggler, .widget-social_menu a {color:#ff9800;}
+    .menu li.current > a, a:focus, a:hover, .menu a:focus, .menu a:hover, .sidebar-toggler span:focus, .sidebar-toggler span:hover, .sub-menu-toggler:focus, .sub-menu-toggler:hover, .widget-social_menu a:focus, .widget-social_menu a:hover {color:#de0066;}
+</style>
+    
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap-grid.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/css/kemo.css">
+<link href="/vendor/fontawesome-free-5.9.0-web/css/all.css" rel="stylesheet"> 
+</head>
+<body class='page type-blog'>
+
+  <div class='site'><a class='screen-reader-text' href='#content'>Skip to Content</a><div class='main'><nav id='main-menu' class='menu main-menu' aria-label='Main Menu'>
+  <div class='container'>
+    
+    <ul>
+      <li class="">
+          <a href="/" title="Home - Ken Moini"><i class="fa fa-home"></i></a>
+      </li><li class='item'>
+        <a href='/about/' class="about">
+          <span>About</span>
+        </a>
+      </li><li class='item'>
+        <a href='/links/' class="links">
+          <span>Links</span>
+        </a>
+      </li><li class='item'>
+        <a href='/blog/' class="blog">
+          <span>Blog</span>
+        </a>
+      </li></ul>
+  </div>
+</nav><div class='header-widgets'>
+        <div class='container'></div>
+      </div>
+
+      <main id='content'>
+
+
+<article lang='en' class='entry'>
+  <header class='header entry-header'>
+  <div class='container sep-after'>
+    <div class='header-info'>
+      <h1 class='title'>A Third of the Internet Is Vulnerable</h1>
+      
+
+    </div>
+    <div class='entry-meta'>
+  <span class='posted-on'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+  
+</svg>
+<span class='screen-reader-text'>Posted on </span>
+  <time class='entry-date' datetime='2019-01-04T20:38:59-05:00'>2019, Jan 04</time>
+</span>
+
+  
+  
+<span class='reading-time'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <circle cx="12" cy="12" r="10"/>
+  <polyline points="12 6 12 12 15 15"/>
+  
+</svg>
+7 mins read
+</span>
+
+
+  
+  
+</div>
+
+
+  </div>
+</header>
+
+  
+  
+
+  <div class='container entry-content'>
+  
+
+<p>So I didn&rsquo;t want to end up working on something all night long today, it&rsquo;s Friday after all.
+What I decided to do is clean up, test, and release some code I have running on my favorite guenea pig - <a href="https://fiercesw.com/">my work&rsquo;s website</a>.</p>
+
+<h3 id="project-multiple-wordpress-installations">Project: Multiple WordPress installations</h3>
+
+<h4 id="task-fix-vulnerabilities-found-in-the-version-of-jquery-and-jquery-ui-that-are-shipped-with-wordpress">Task: Fix vulnerabilities found in the version of jQuery and jQuery UI that are shipped with WordPress</h4>
+
+<p><a href="https://developers.google.com/web/tools/lighthouse/">Lighthouse</a> is a cool tool I use in web development, helps test and hone in on best practices, performance improvements, SEO, PWA, and more.  It also features a nice high-level Security set of tests.</p>
+
+<p>I scanned a few sites the other day with Lighthouse and was very surprised to find vulnerable versions of <a href="https://snyk.io/vuln/npm:jquery?lh=1.12.4">jQuery</a> and <a href="https://snyk.io/vuln/npm:jquery-ui?lh=1.11.4">jQuery UI</a>.</p>
+
+<figure class="text-center"><a href="/content-stuff/vulnerable-jquery.jpg">
+    <img src="/images/content-stuff/vulnerable-jquery.jpg"/> </a>
+</figure>
+
+
+<p>At first I did what anyone would do: check for updates.  Nope, all checks out Charlie.
+Then I figured it might have been a 3rd party script or plugin that was including these old &amp; vulnerable jQuery packages.  Nope, no specific jQuery scripts/versions are enqueued.  Weird, let&rsquo;s check the source and the path of the set of files in question&hellip;wait, is that the copy of jQuery included in WordPress core?  Wtfhax?</p>
+
+<h3 id="trust-thy-neighbor-but-never-your-platform">Trust Thy Neighbor - but never your platform</h3>
+
+<p>Ok, fuck that I&rsquo;m not running vulnerable code no matter who supplies it.  Don&rsquo;t they know about this issue though?  The answer, unsurprisingly, is yes though what is surprising is that <a href="https://core.trac.wordpress.org/ticket/37110">there has been discussion for a while</a> and other cases of it being brought up earlier as well.</p>
+
+<p>Initially it looks like the WordPress developers are looking out for the slurry of shit that&rsquo;s out their in their plugin pool - all the poorly developed plugins that are probably vulnerable in other ways in and of their own right.  These poor plugins rely on the version of jQuery provided by WordPress, what about those poor bastards?!  Oh, and updating would break IE6/7/8 compatability!  Think of all the already vulnerable sites out there, they couldn&rsquo;t push a change to update security at the risk of breaking compatability!  <em><strong>Inconceivable!</strong></em></p>
+
+<p>Well, thankfully I don&rsquo;t run poorly crafted plugins, and few plugins even at that.  I&rsquo;m sure they&rsquo;re all properly using jQuery, and my front-end uses newer versions as well since it&rsquo;s based on Bootstrap 4!
+We can easily rip out the old scripts and replace with newer ones thanks to some built-in functions.</p>
+
+<p><strong>Testing on the front-end</strong> - flawless.
+<strong>Testing in the WordPress control panel?</strong> - Bugs and errors!  Yay!</p>
+
+<p>So, here&rsquo;s another funny thing - evidently some of the <em>WordPress Core Codebase</em> isn&rsquo;t properly using jQuery and needs to be refactored to use newer versions that aren&rsquo;t vulnerable - and there lies the rub.</p>
+
+<h3 id="hack-and-slash">Hack and slash</h3>
+
+<p>So here&rsquo;s a bit of a round-about way to update the versions of jQuery and jQuery UI that are served on your front-end of a WordPress installation (tested with the latest 5.0.2 release as of this writing, so new shit).</p>
+
+<p>What we&rsquo;ll do is <em>deregister</em> the built-in WordPress jQuery scripts, and override with newly queued files that we provide ourselves.  This can easily be made into a plug-in, but for ease of use and maintenance I&rsquo;ve placed it in our theme&rsquo;s <em>function.php</em> file.</p>
+
+<p>Something to note is that we&rsquo;re only going to do this if the page loaded is not a WP Admin page or the WP Customizer because that code base still needs refactoring to work.  Thankfully the largest attack surface is the front-end (this contact forms, etc), and the Admin/Customizer has additional authentication measures in place before an attacker could hit an older version of jQuery.</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#75715e">&lt;?php</span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">kemo_jquery_updater</span>() {
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-core&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-migrate&#39;</span>);
+
+
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-core&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-widget&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-accordion&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-autocomplete&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-button&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-datepicker&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-dialog&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-draggable&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-droppable&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-menu&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-mouse&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-position&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-progressbar&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-selectable&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-resizable&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-selectmenu&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-sortable&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-slider&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-spinner&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-tooltip&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-tabs&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-effects-core&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-effects-blind&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-effects-bounce&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-effects-clip&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-effects-drop&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-effects-explode&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-effects-fade&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-effects-fold&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-effects-highlight&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-effects-pulsate&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-effects-scale&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-effects-shake&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-effects-slide&#39;</span>);
+  <span style="color:#a6e22e">wp_deregister_script</span>(<span style="color:#e6db74">&#39;jquery-ui-effects-transfer&#39;</span>);
+
+
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/jquery-3.3.1.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(), <span style="color:#e6db74">&#39;3.3.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-core&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/jquery-3.3.1.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(), <span style="color:#e6db74">&#39;3.3.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-migrate&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/jquery-migrate-3.0.1.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery&#39;</span>), <span style="color:#e6db74">&#39;3.0.1&#39;</span> );
+
+
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-core&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/jquery-ui-core.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-migrate&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-widget&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/widget.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-ui-core&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-accordion&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/accordion.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-ui-widget&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-autocomplete&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/autocomplete.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-ui-widget&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-button&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/button.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-ui-widget&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-datepicker&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/datepicker.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-ui-widget&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-dialog&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/dialog.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-ui-widget&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-draggable&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/draggable.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-ui-widget&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-droppable&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/droppable.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-ui-widget&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-menu&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/menu.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-ui-widget&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-mouse&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/mouse.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-ui-widget&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-position&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/position.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-ui-widget&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-progressbar&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/progressbar.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-ui-widget&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-selectable&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/selectable.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-ui-widget&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-resizable&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/resizable.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-ui-widget&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-selectmenu&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/selectmenu.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-ui-widget&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-sortable&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/sortable.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-ui-widget&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-slider&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/slider.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-ui-widget&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-spinner&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/spinner.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-ui-widget&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-tooltip&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/tooltip.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-ui-widget&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-tabs&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/tabs.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-ui-widget&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-effects-core&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/effect.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-ui-core&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-effects-blind&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/effect-blind.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-effects-core&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-effects-bounce&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/effect-bounce.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-effects-core&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-effects-clip&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/effect-clip.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-effects-core&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-effects-drop&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/effect-drop.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-effects-core&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-effects-explode&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/effect-explode.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-effects-core&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-effects-fade&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/effect-fade.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-effects-core&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-effects-fold&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/effect-fold.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-effects-core&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-effects-highlight&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/effect-highlight.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-effects-core&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-effects-pulsate&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/effect-pulsate.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-effects-core&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-effects-scale&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/effect-scale.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-effects-core&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-effects-shake&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/effect-shake.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-effects-core&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-effects-slide&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/effect-slide.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-effects-core&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+  <span style="color:#a6e22e">wp_register_script</span>( <span style="color:#e6db74">&#39;jquery-ui-effects-transfer&#39;</span>, <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() <span style="color:#f92672">.</span> <span style="color:#e6db74">&#39;/js/vendor/jquery-ui/effect-transfer.min.js&#39;</span>, <span style="color:#66d9ef">array</span>(<span style="color:#e6db74">&#39;jquery-effects-core&#39;</span>), <span style="color:#e6db74">&#39;1.12.1&#39;</span> );
+
+}
+$wp_admin <span style="color:#f92672">=</span> <span style="color:#a6e22e">is_admin</span>();
+$wp_customizer <span style="color:#f92672">=</span> <span style="color:#a6e22e">is_customize_preview</span>();
+
+<span style="color:#66d9ef">if</span> ( $wp_admin <span style="color:#f92672">||</span> $wp_customizer ) {
+  <span style="color:#75715e">// echo &#39;We are in the WP Admin or in the WP Customizer&#39;;
+</span><span style="color:#75715e"></span>}
+<span style="color:#66d9ef">else</span> {
+  <span style="color:#a6e22e">add_action</span>(<span style="color:#e6db74">&#39;wp_enqueue_scripts&#39;</span>, <span style="color:#e6db74">&#39;kemo_jquery_updater&#39;</span>);
+}
+</code></pre></div>
+
+<p>Pretty simple script, just a lot of repeated functions.</p>
+
+<h3 id="sourcing-the-scripts">Sourcing the Scripts</h3>
+
+<p>Ok, that&rsquo;s how we update the enqueued scripts, but where do you get the scripts from?</p>
+
+<p>jQuery is easy, just grab the latest minified version of jQuery and jQuery Migrate off <a href="https://jquery.com/download/">their site</a>.</p>
+
+<p>jQuery UI however, is a bit more laborous.  You see, they only release a concatenated and minified version of jQuery UI now and WordPress uses separate files for each jQuery UI module.  No bueno, not as easy as we&rsquo;d like but still not too hard.</p>
+
+<h3 id="git-with-it">Git With It</h3>
+
+<p>Weird thing with jQuery UI - it&rsquo;s not really actively developed any more but there are still a number of changes that are reflected in the <strong>master</strong> branch of their codebase so you have to be careful not to get this because it&rsquo;s more bleeding edge.</p>
+
+<p>Navigate over to the repo, use the Branch/Tag switcher to select the 1.12.1 tag (last stable, hopefully good release)&hellip;or just <a href="https://github.com/jquery/jquery-ui/tree/1.12.1">click this link</a>.</p>
+
+<p>Clone it, or just download a copy.</p>
+
+<p>There isn&rsquo;t anything to really build&hellip;it even uses an old version of Bower that gives you some nice warnings when creating the development environment.  The only thing that does is allow you to run tests which we don&rsquo;t care about (hint: they all pass!)</p>
+
+<p>Make a copy of <strong>/ui/</strong> folder, and this is where the uncompressed/minified scripts and individual modules live.  We&rsquo;ll need to concatenate some of the jQuery UI core files into a single file.  Next, create a new copy of all the JS files with a <em>.min.js</em>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cp -r ui/ ui-min/
+$ cd ui-min/
+$ cat data.js disable-selection.js focusable.js form.js ie.js jquery-1-7.js keycode.js labels.js plugin.js safe-active-element.js safe-blur.js scroll-parent.js tabbable.js unique-id.js version.js &gt;&gt; jquery-ui-core.js
+$ find . -name <span style="color:#e6db74">&#39;*.js&#39;</span> | <span style="color:#66d9ef">while</span> read oldname; <span style="color:#66d9ef">do</span> mv <span style="color:#e6db74">&#34;</span>$oldname<span style="color:#e6db74">&#34;</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>oldname/.js/.min.js<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>; <span style="color:#66d9ef">done</span>
+$ rm -rf ./i18n</code></pre></div>
+Oh, also get rid of that international shit, WordPress doesn&rsquo;t use it anyway (that I know of).  Just takes more time to process.</p>
+
+<p>Now before we minify, we need to add some backported bits to add support for the $.ui function binding.  Open the <strong>jquery-ui-core.min.js</strong> file that was created earlier, and replace line 25 (should look like this&hellip;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">} ( <span style="color:#66d9ef">function</span>( <span style="color:#a6e22e">$</span> ) {
+</code></pre></div>
+&hellip;with this&hellip;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">} ( <span style="color:#66d9ef">function</span>( <span style="color:#a6e22e">$</span> ) { <span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">ui</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">ui</span> <span style="color:#f92672">||</span> {};
+</code></pre></div></p>
+
+<p>Now, we get to minify all the things.  You&rsquo;ll need Node.js for this, but sadly that&rsquo;s everywhere and/or easy to get so I&rsquo;ll assume you know how to do as much and are ready to run&hellip;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cd ..
+$ npm install -g minify-all
+$ minify-all ui-min/</code></pre></div></p>
+
+<p>Now we&rsquo;re playing the waiting game while it crunches the scripts, but after that we can upload that to our site in the appropriate places, make sure the script matches the paths, and bingo bango, you got yourself a more secure WordPress site!</p>
+
+</div>
+
+  
+<footer class='entry-footer'>
+  <div class='container sep-before'><div class='last-updated'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34" />
+  <polygon points="18 2 22 6 12 16 8 16 8 12 18 2" />
+  
+</svg>
+<span class='screen-reader-text'>Last updated: </span>
+      <time class='entry-date' datetime='2019-07-22T23:25:39-05:00'>2019, Jul 22</time>
+    </div><div class='tags'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+<span class='screen-reader-text'>Tags: </span><a class='tag' href='/tags/wordpress/'>WordPress</a>, <a class='tag' href='/tags/jquery/'>jQuery</a>, <a class='tag' href='/tags/jquery-ui/'>jQuery UI</a>, <a class='tag' href='/tags/javascript/'>javascript</a>, <a class='tag' href='/tags/security/'>security</a>, <a class='tag' href='/tags/vulnerability/'>vulnerability</a></div>
+
+  </div>
+</footer>
+
+
+</article>
+
+<nav class='entry-nav'>
+  <div class='container'>
+  <div class="row"><div class='prev-entry sep-before col-sm-12 col-md-6'>
+      <a href='/blog/pwa-haaat/'>
+        <span aria-hidden='true'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="20" y1="12" x2="4" y2="12"/>
+  <polyline points="10 18 4 12 10 6"/>
+  
+</svg>
+ Previous</span>
+        <span class='screen-reader-text'>Previous post: </span>PWA-Haaat</a>
+    </div><div class='next-entry sep-before col-sm-12 col-md-6 text-right'>
+      <a href='/blog/gitlab-container-registry-with-minio-custom-s3-endpoint/'>
+        <span class='screen-reader-text'>Next post: </span>GitLab Container Registry with Minio Custom S3 Endpoint<span aria-hidden='true'>Next <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="4" y1="12" x2="20" y2="12"/>
+  <polyline points="14 6 20 12 14 18"/>
+  
+</svg>
+</span>
+      </a>
+    </div></div>
+  </div>
+</nav>
+
+
+
+
+      </main>
+
+      <footer id='footer' class='footer'>
+        <div class='container sep-before'><section class='widget widget-social_menu sep-after'><nav aria-label='Social Menu'>
+    <ul><li>
+        <a href='https://github.com/kenmoini' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Github account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://twitter.com/notkemo' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Twitter account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://instagram.com/kenmoini' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Instagram account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+  <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='mailto:ken@kenmoini.com' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Contact via Email</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+  <polyline points="22,6 12,13 2,6"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://linkedin.com/in/kenmoini' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Linkedin account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+  <rect x="2" y="9" width="4" height="12"/>
+  <circle cx="4" cy="4" r="2"/>
+  
+</svg>
+</a>
+      </li></ul>
+  </nav>
+</section><div class='copyright'>
+  <p></p>
+</div>
+
+          
+          
+          <small style="color:#333" class="muted"><em>Rev 58795f5</em></small>
+          
+        </div>
+      </footer>
+
+    </div>
+  </div><script>window.__assets_js_src ="/assets/js/"</script>
+
+<script src='https://www.kenmoini.com/assets/js/main.9e5c4cf4.js'></script><script src='/js/custom.js'></script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

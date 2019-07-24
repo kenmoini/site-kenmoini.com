@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Google Drive on Ken Moini</title>
+    <link>https://www.kenmoini.com/tags/google-drive/</link>
+    <description>Recent content in Google Drive on Ken Moini</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 03 Jan 2019 02:55:23 -0500</lastBuildDate>
+    
+	<atom:link href="https://www.kenmoini.com/tags/google-drive/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Google Drive OCAML Sync</title>
+      <link>https://www.kenmoini.com/links/google-drive-ocaml-sync/</link>
+      <pubDate>Thu, 03 Jan 2019 02:55:23 -0500</pubDate>
+      
+      <guid>https://www.kenmoini.com/links/google-drive-ocaml-sync/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

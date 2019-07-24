@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>javascript on Ken Moini</title>
+    <link>https://www.kenmoini.com/tags/javascript/</link>
+    <description>Recent content in javascript on Ken Moini</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 04 Jan 2019 20:38:59 -0500</lastBuildDate>
+    
+	<atom:link href="https://www.kenmoini.com/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A Third of the Internet Is Vulnerable</title>
+      <link>https://www.kenmoini.com/blog/a-third-of-the-internet-is-vulnerable/</link>
+      <pubDate>Fri, 04 Jan 2019 20:38:59 -0500</pubDate>
+      
+      <guid>https://www.kenmoini.com/blog/a-third-of-the-internet-is-vulnerable/</guid>
+      <description>So I didn&amp;rsquo;t want to end up working on something all night long today, it&amp;rsquo;s Friday after all. What I decided to do is clean up, test, and release some code I have running on my favorite guenea pig - my work&amp;rsquo;s website.
+Project: Multiple WordPress installations Task: Fix vulnerabilities found in the version of jQuery and jQuery UI that are shipped with WordPress Lighthouse is a cool tool I use in web development, helps test and hone in on best practices, performance improvements, SEO, PWA, and more.</description>
+    </item>
+    
+    <item>
+      <title>PWA-Haaat</title>
+      <link>https://www.kenmoini.com/blog/pwa-haaat/</link>
+      <pubDate>Thu, 03 Jan 2019 22:31:48 -0500</pubDate>
+      
+      <guid>https://www.kenmoini.com/blog/pwa-haaat/</guid>
+      <description>I&amp;rsquo;m sure you&amp;rsquo;ve heard of RWD, or Responsive Web Design. HA, that&amp;rsquo;s soooo two-thousand-and-late
+What&amp;rsquo;s hot on the streets these days is PWA, or Progressive Web Applications. You know how Google has pretty much taken over how the web is shaped due to our consumption and reliance and development around Chrome? Yeah, well they&amp;rsquo;ve rolled out AMP which I&amp;rsquo;m sure you&amp;rsquo;ve seen, but otherwise there&amp;rsquo;s another thing - these Progressive Web Applications.</description>
+    </item>
+    
+  </channel>
+</rss>

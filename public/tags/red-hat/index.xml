@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>red hat on Ken Moini</title>
+    <link>https://www.kenmoini.com/tags/red-hat/</link>
+    <description>Recent content in red hat on Ken Moini</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 08 Jul 2019 22:31:48 -0500</lastBuildDate>
+    
+	<atom:link href="https://www.kenmoini.com/tags/red-hat/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Kubernetes on Linode – A Quick Start of Sorts</title>
+      <link>https://www.kenmoini.com/blog/kubernetes-on-linode-a-quick-start-of-sorts/</link>
+      <pubDate>Mon, 08 Jul 2019 22:31:48 -0500</pubDate>
+      
+      <guid>https://www.kenmoini.com/blog/kubernetes-on-linode-a-quick-start-of-sorts/</guid>
+      <description>When I was at Red Hat Summit, I spent the last day in some sweatpants and meandered about the showroom floor trying to hide my Executive Exchange badge from all the sales vultures. They announced over the loudspeaker that they were closing up shop soon, and so I made my last round across the room. To my surprise, there were rows I hadn&amp;rsquo;t gone to yet – the place was massive.</description>
+    </item>
+    
+    <item>
+      <title>GitLab Container Registry with Minio Custom S3 Endpoint</title>
+      <link>https://www.kenmoini.com/blog/gitlab-container-registry-with-minio-custom-s3-endpoint/</link>
+      <pubDate>Sun, 07 Apr 2019 22:31:48 -0500</pubDate>
+      
+      <guid>https://www.kenmoini.com/blog/gitlab-container-registry-with-minio-custom-s3-endpoint/</guid>
+      <description>Every time I get on this site to try to write something and post a new blog entry, it just ends up in the Elephant Graveyard of Drafts.
+I have half a dozen other posts waiting to be completed, on things such as how WordPress causes 1/3rd of the Internet to be vulnerable due to shipping old code, to a top-to-bottom view of Progressive Web Apps and Service Workers (super fun), OpenSCAP, and GPS NTP servers.</description>
+    </item>
+    
+    <item>
+      <title>Quick n’ Dirty – Adding disks to Proxmox with LVM</title>
+      <link>https://www.kenmoini.com/blog/quick-n-dirty-adding-disks-to-proxmox/</link>
+      <pubDate>Mon, 08 Oct 2018 22:31:48 -0500</pubDate>
+      
+      <guid>https://www.kenmoini.com/blog/quick-n-dirty-adding-disks-to-proxmox/</guid>
+      <description>Proxmox LVM Expansion, adding additional disks to your Proxmox host for VM storage. No real story behind this post, just something simple and probably more of a documentation of the process for myself more than anything.
+In case you were just CRAVING the story and background behind this…well, I recently got a few new (to me) Dell R710 servers, pretty decked out. Booting Proxmox off of a 128gb USB 3.</description>
+    </item>
+    
+    <item>
+      <title>Software Defined Networking with Linux</title>
+      <link>https://www.kenmoini.com/blog/software-defined-networking-with-linux/</link>
+      <pubDate>Mon, 01 Oct 2018 22:31:48 -0500</pubDate>
+      
+      <guid>https://www.kenmoini.com/blog/software-defined-networking-with-linux/</guid>
+      <description>Well well well, it’s been a while y’all.
+Been busy developing and writing a few things, some more exciting stuff coming up in the pipeline. A lot of the projects I’m working on have to kind of sort of “plug together” and to do a lot of this I use open-source solutions and a lot of automation. Today I’d like to show you how to setup a Linux based router, complete with packet forwarding, DHCP, DNS, and dare I even say NTP!</description>
+    </item>
+    
+    <item>
+      <title>Rolling up Let’s Encrypt on Ansible Tower’s UI</title>
+      <link>https://www.kenmoini.com/blog/rolling-up-lets-encrypt-on-ansible-towers-ui/</link>
+      <pubDate>Sat, 14 Jul 2018 22:31:48 -0500</pubDate>
+      
+      <guid>https://www.kenmoini.com/blog/rolling-up-lets-encrypt-on-ansible-towers-ui/</guid>
+      <description>The other day someone asked me what I do for fun.
+&amp;ldquo;Fun&amp;rdquo; really has a few different definitions for me, and I’d say for most people. It could be entertainment, guttural satisfaction, leisurely adventuring about, or maybe for some slightly compulsive people like me, accomplishing a task. Something I’m kind of overly compulsive about is proper SSL implementation and PKI.
+So this morning I was having LOADS of fun. My fast just started to kick in with some of the good energy and ‘umph’ so I was feeling great.</description>
+    </item>
+    
+    <item>
+      <title>Wrangling Bluetooth in RHEL &amp; CentOS 7</title>
+      <link>https://www.kenmoini.com/blog/wrangling-bluetooth-on-rhel-and-centos/</link>
+      <pubDate>Tue, 15 May 2018 22:31:48 -0500</pubDate>
+      
+      <guid>https://www.kenmoini.com/blog/wrangling-bluetooth-on-rhel-and-centos/</guid>
+      <description>I recently started as the Lead Solution Architect at Fierce Software. It’s been an excellent experience so far and I’m excited to be working with such a great team. At Fierce Software we help Public Sector entities find enterprise ready open source solutions. Our portfolio of vendors is deliberately diverse because in today’s enterprise multi-vendor, multi-vertical solutions are commonplace. No one’s running all Cisco network gear, Cisco servers, annnnd then what’s after that?</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>dns on Ken Moini</title>
+    <link>https://www.kenmoini.com/tags/dns/</link>
+    <description>Recent content in dns on Ken Moini</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 01 Oct 2018 22:31:48 -0500</lastBuildDate>
+    
+	<atom:link href="https://www.kenmoini.com/tags/dns/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Software Defined Networking with Linux</title>
+      <link>https://www.kenmoini.com/blog/software-defined-networking-with-linux/</link>
+      <pubDate>Mon, 01 Oct 2018 22:31:48 -0500</pubDate>
+      
+      <guid>https://www.kenmoini.com/blog/software-defined-networking-with-linux/</guid>
+      <description>Well well well, it’s been a while y’all.
+Been busy developing and writing a few things, some more exciting stuff coming up in the pipeline. A lot of the projects I’m working on have to kind of sort of “plug together” and to do a lot of this I use open-source solutions and a lot of automation. Today I’d like to show you how to setup a Linux based router, complete with packet forwarding, DHCP, DNS, and dare I even say NTP!</description>
+    </item>
+    
+  </channel>
+</rss>

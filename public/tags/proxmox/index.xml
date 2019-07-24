@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>proxmox on Ken Moini</title>
+    <link>https://www.kenmoini.com/tags/proxmox/</link>
+    <description>Recent content in proxmox on Ken Moini</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 08 Oct 2018 22:31:48 -0500</lastBuildDate>
+    
+	<atom:link href="https://www.kenmoini.com/tags/proxmox/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Quick n’ Dirty – Adding disks to Proxmox with LVM</title>
+      <link>https://www.kenmoini.com/blog/quick-n-dirty-adding-disks-to-proxmox/</link>
+      <pubDate>Mon, 08 Oct 2018 22:31:48 -0500</pubDate>
+      
+      <guid>https://www.kenmoini.com/blog/quick-n-dirty-adding-disks-to-proxmox/</guid>
+      <description>Proxmox LVM Expansion, adding additional disks to your Proxmox host for VM storage. No real story behind this post, just something simple and probably more of a documentation of the process for myself more than anything.
+In case you were just CRAVING the story and background behind this…well, I recently got a few new (to me) Dell R710 servers, pretty decked out. Booting Proxmox off of a 128gb USB 3.</description>
+    </item>
+    
+  </channel>
+</rss>

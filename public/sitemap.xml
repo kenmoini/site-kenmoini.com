@@ -1,0 +1,821 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://www.kenmoini.com/links/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/about/</loc>
+    <lastmod>2019-07-23T14:35:51-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/blog/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/blog/how-to-passing-the-amazon-web-services-solution-architect-exam/</loc>
+    <lastmod>2019-07-24T11:44:38-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/</loc>
+    <lastmod>2019-07-24T11:44:38-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/</loc>
+    <lastmod>2019-07-24T11:44:38-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/amazon/</loc>
+    <lastmod>2019-07-24T11:44:38-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/amazon-web-services/</loc>
+    <lastmod>2019-07-24T11:44:38-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/aws/</loc>
+    <lastmod>2019-07-24T11:44:38-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/certification/</loc>
+    <lastmod>2019-07-24T11:44:38-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/cloud-practitioner/</loc>
+    <lastmod>2019-07-24T11:44:38-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/exam/</loc>
+    <lastmod>2019-07-24T11:44:38-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/how-to/</loc>
+    <lastmod>2019-07-24T11:44:38-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/solution-architect/</loc>
+    <lastmod>2019-07-24T11:44:38-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/training/</loc>
+    <lastmod>2019-07-24T11:44:38-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/foss/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/blog/kubernetes-on-linode-a-quick-start-of-sorts/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/oss/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/cert-manager/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/certbot/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/containers/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/devops/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/docker/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/fedora/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/guide/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/hashicorp/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/helm/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/ingress/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/k8s/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/kuard/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/kubernetes/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/lets-encrypt/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/linode/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/memes/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/minikube/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/minio/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/minishift/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/nginx/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/nodebalancer/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/oci/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/open-source/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/openshift/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/quick-start/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/red-hat/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/s3/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/ssl/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/terraform/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/tiller/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/tutorial/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/ci/cd/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/blog/gitlab-container-registry-with-minio-custom-s3-endpoint/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/ansible/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/buildah/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/gitlab/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/podman/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/rhel/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/skopeo/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/storage/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/blog/a-third-of-the-internet-is-vulnerable/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/wordpress/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/jquery/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/jquery-ui/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/javascript/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/security/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/vulnerability/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/fierce-software/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/blog/pwa-haaat/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/js/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/progressive-web-design/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/pwa/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/service-workers/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/google-drive/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/links/google-drive-ocaml-sync/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/integrations/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/links/private-ipv6-address-generator/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/generator/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/homelab/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/ipv6/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/network/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/useful/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/links/nsa-ant-catalog-usb/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/nsa/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/spy-shit/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/the-future-is-now/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/blog/how-to-passing-the-certified-cloudbees-jenkins-engineer-exam/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/ccje/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/certified/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/cje/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/cloudbees/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/cloudbees-certified-jenkins-engineer/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/continuous-delivery/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/continuous-deployment/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/continuous-integration/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/engineer/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/jenkins/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/blog/quick-n-dirty-adding-disks-to-proxmox/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/administration/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/debian/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/hypervisor/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/linux/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/lvm/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/proxmox/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/virtualization/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/vms/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/walkthrough/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/blog/software-defined-networking-with-linux/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/centos/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/chrony/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/chronyd/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/cluster/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/cumulus/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/dhcp/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/dns/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/gluster/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/linux-networking/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/networking/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/ntp/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/raspberry-pi/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/sdn/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/software-defined-networking/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/ubuntu/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/blog/rolling-up-lets-encrypt-on-ansible-towers-ui/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/epel/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/galaxy/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/https/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/role/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/blog/wrangling-bluetooth-on-rhel-and-centos/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/audio/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/bluetooth/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/bluez/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/bt/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/galago-pro/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/headphones/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/headset/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/pulseaudio/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/tags/system76/</loc>
+    <lastmod>2019-07-22T23:25:39-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/page/</loc>
+    <lastmod>2019-07-23T14:35:51-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.kenmoini.com/series/</loc>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

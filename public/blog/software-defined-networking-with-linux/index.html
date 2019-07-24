@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang='en'><head>
+  <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content='Well well well, it’s been a while y’all.
+Been busy developing and writing a few things, some more exciting stuff coming up in the pipeline. A lot of the projects I’m working on have to kind of sort of “plug together” and to do a lot of this I use open-source solutions and a lot of automation. Today I’d like to show you how to setup a Linux based router, complete with packet forwarding, DHCP, DNS, and dare I even say NTP!'>
+<meta name='theme-color' content='#de0066'>
+
+<meta property='og:title' content='Software Defined Networking with Linux - Ken Moini'>
+<meta property='og:description' content='Well well well, it’s been a while y’all.
+Been busy developing and writing a few things, some more exciting stuff coming up in the pipeline. A lot of the projects I’m working on have to kind of sort of “plug together” and to do a lot of this I use open-source solutions and a lot of automation. Today I’d like to show you how to setup a Linux based router, complete with packet forwarding, DHCP, DNS, and dare I even say NTP!'>
+<meta property='og:url' content='https://www.kenmoini.com/blog/software-defined-networking-with-linux/'>
+<meta property='og:site_name' content='Ken Moini'>
+<meta property='og:type' content='article'><meta property='article:section' content='blog'><meta property='article:tag' content='administration'><meta property='article:tag' content='centos'><meta property='article:tag' content='chrony'><meta property='article:tag' content='chronyd'><meta property='article:tag' content='cluster'><meta property='article:tag' content='cumulus'><meta property='article:tag' content='debian'><meta property='article:tag' content='dhcp'><meta property='article:tag' content='dns'><meta property='article:tag' content='gluster'><meta property='article:tag' content='guide'><meta property='article:tag' content='kubernetes'><meta property='article:tag' content='linux'><meta property='article:tag' content='linux networking'><meta property='article:tag' content='network'><meta property='article:tag' content='networking'><meta property='article:tag' content='ntp'><meta property='article:tag' content='raspberry pi'><meta property='article:tag' content='red hat'><meta property='article:tag' content='rhel'><meta property='article:tag' content='sdn'><meta property='article:tag' content='software defined networking'><meta property='article:tag' content='tutorial'><meta property='article:tag' content='ubuntu'><meta property='article:tag' content='walkthrough'><meta property='article:published_time' content='2018-10-01T22:31:48-05:00'/><meta property='article:modified_time' content='2019-07-22T23:25:39-05:00'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@notkemo'>
+
+<meta name="generator" content="Hugo 0.55.6" />
+
+  <title>Software Defined Networking with Linux - Ken Moini</title>
+  <link rel='canonical' href='https://www.kenmoini.com/blog/software-defined-networking-with-linux/'>
+  
+  
+  <link rel='icon' href='/favicon.ico'>
+<link rel='stylesheet' href='/assets/css/main.fb20af92.css'><link rel='stylesheet' href='/css/custom.css'><style>
+    :root{--color-accent:#de0066;}
+    blockquote { border-left: .2em solid#de0066;}
+    :root{background-color:#000;}
+    body{color:#EEE;}
+    .title, h1, h2, h3, h4, h5, h6 {color:#EEE;}
+    a, .menu a, .sidebar-toggler span, .sub-menu-toggler, .widget-social_menu a {color:#ff9800;}
+    .menu li.current > a, a:focus, a:hover, .menu a:focus, .menu a:hover, .sidebar-toggler span:focus, .sidebar-toggler span:hover, .sub-menu-toggler:focus, .sub-menu-toggler:hover, .widget-social_menu a:focus, .widget-social_menu a:hover {color:#de0066;}
+</style>
+    
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap-grid.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/css/kemo.css">
+<link href="/vendor/fontawesome-free-5.9.0-web/css/all.css" rel="stylesheet"> 
+</head>
+<body class='page type-blog'>
+
+  <div class='site'><a class='screen-reader-text' href='#content'>Skip to Content</a><div class='main'><nav id='main-menu' class='menu main-menu' aria-label='Main Menu'>
+  <div class='container'>
+    
+    <ul>
+      <li class="">
+          <a href="/" title="Home - Ken Moini"><i class="fa fa-home"></i></a>
+      </li><li class='item'>
+        <a href='/about/' class="about">
+          <span>About</span>
+        </a>
+      </li><li class='item'>
+        <a href='/links/' class="links">
+          <span>Links</span>
+        </a>
+      </li><li class='item'>
+        <a href='/blog/' class="blog">
+          <span>Blog</span>
+        </a>
+      </li></ul>
+  </div>
+</nav><div class='header-widgets'>
+        <div class='container'></div>
+      </div>
+
+      <main id='content'>
+
+
+<article lang='en' class='entry'>
+  <header class='header entry-header'>
+  <div class='container sep-after'>
+    <div class='header-info'>
+      <h1 class='title'>Software Defined Networking with Linux</h1>
+      
+
+    </div>
+    <div class='entry-meta'>
+  <span class='posted-on'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+  
+</svg>
+<span class='screen-reader-text'>Posted on </span>
+  <time class='entry-date' datetime='2018-10-01T22:31:48-05:00'>2018, Oct 01</time>
+</span>
+
+  
+  
+<span class='reading-time'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <circle cx="12" cy="12" r="10"/>
+  <polyline points="12 6 12 12 15 15"/>
+  
+</svg>
+8 mins read
+</span>
+
+
+  
+  
+</div>
+
+
+  </div>
+</header>
+
+  
+  
+
+  <div class='container entry-content'>
+  
+
+<p>Well well well, it’s been a while y’all.</p>
+
+<p>Been busy developing and writing a few things, some more exciting stuff coming up in the pipeline.
+A lot of the projects I’m working on have to kind of sort of “plug together” and to do a lot of this I use open-source solutions and a lot of automation.
+Today I’d like to show you how to setup a Linux based router, complete with packet forwarding, DHCP, DNS, and dare I even say NTP!</p>
+
+<h2 id="why-and-what-now">Why and what now?</h2>
+
+<p>One of the projects I’m working on requires deployment into a disconnected environment, and it’s a lot of things coming together.  Half a dozen Red Hat products, some CloudBees, and even some GitLab in the mix.  Being disconnected, there needs to be some way to provide routing services.  Some would buy a router such as a Cisco ISR, I in many cases like to deploy a software-based router such as pfSense or Cumulus Linux.  In this environment, there’s a strict need to only deploy Red Hat Enterprise Linux, so that’s what I used and that’s what this guide is based around but it can be used with CentOS with little to no modification, and you can execute the same thing on Debian based system with some minor substitutions.</p>
+
+<p>A router allows packets to be routed around and in and out of the network, DHCP allows other clients to obtain an IP automatically as you would at home, and DNS allows for resolution of URLs such as google.com into 123.45.67.190 which can also be used to resolve hostnames internally.  NTP ensures that everyone is humming along at the same beat.  Your Asus or Nighthawk router and datacenters use Linux to route traffic every day and we’ll be using the same sort of technologies to deliver routing to our disconnected environment.</p>
+
+<h3 id="today-s-use-case">Today’s use case</h3>
+
+<p>Let’s imagine you start with this sort of environment, maybe something like this&hellip;</p>
+
+<div class="row text-center">
+<figure class="col-sm-12 col-md-4"><a href="/images/content-stuff/20180930_184335-e1538450917443-768x1024.jpg" target="_blank">
+    <img src="/images/content-stuff/20180930_184335-e1538450917443-768x1024.jpg"/> </a>
+</figure>
+
+<figure class="col-sm-12 col-md-4"><a href="/images/content-stuff/20180930_184322-e1538450961695-768x1024.jpg" target="_blank">
+    <img src="/images/content-stuff/20180930_184322-e1538450961695-768x1024.jpg"/> </a>
+</figure>
+
+<figure class="col-sm-12 col-md-4"><a href="/images/content-stuff/20180930_184733-e1538451154605-768x1024.jpg" target="_blank">
+    <img src="/images/content-stuff/20180930_184733-e1538451154605-768x1024.jpg"/> </a>
+</figure>
+
+</div>
+
+<p>What we have here is a 7-node Raspberry Pi 3 B+ cluster!</p>
+
+<p>3 nodes have 2x) 32gb USB drives in them to support a 3-node replica Gluster cluster (it’s fucking magic!).  Then 3 other nodes are a part of a Kubernetes cluster, and the last RPi is the brains of the operation!</p>
+
+<p>In order to get all these nodes talking to each other, we could set static IPs on every node and tell everyone where everyone else is at and call it a day.  In reality, though, no one does that and it’s a pain if not daunting.  So the last Raspberry Pi will offer DHCP, DNS, and NTP to the rest of the Kubernetes and Gluster clusters while also offering service as a wifi bridge and bastion host to the other nodes!  I’ve already got this running on Raspbian and have some workloads operating so I’ve recreated this lab in VirtualBox with a Virtual Internal Network and Red Hat Enterprise Linux.</p>
+
+<h2 id="step-1-configure-linux-router">Step 1 – Configure Linux Router</h2>
+
+<p>Before we proceed, let’s go along with the following understandings of your Linux Router machine:</p>
+
+<ul>
+<li>Running any modern Linux, RHEL, Cumulus Linux, Raspbian, etc</li>
+<li>Has two network interface cards, we’ll call them eth0 and eth1:
+
+<ul>
+<li>WAN (eth0) – This is where you get the “internet” from.  In the RPi cluster, it’s the wlan0 wifi interface, in my RHEL VM it’s named enp0s3.</li>
+<li>LAN (eth1) – This is where you connect the switch to that connects to the other nodes, or the virtual network that the VMs live in.  In my RHEL VM it’s named enp0s8.</li>
+</ul></li>
+<li>We’ll be using the network 192.168.69.0/24 on the LAN side (or netmask of 255.255.255.0 for those who don’t speak CIDR), and setting our internal domain to kemo.priv-int</li>
+</ul>
+
+<p>I’m starting with a fresh RHEL VM here, so the first thing I want to do is jump into root and set my hostname for my router, update packages, and install the ones we’ll need.</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo -i
+$ hostnamectl set-hostname router.kemo.priv-int
+$ yum update -y
+$ yum install firewalld dnsmasq bind-utils</code></pre></div>
+
+<p>Now that we’ve got everything set up, let’s jump right into configuring the network interface connections.  As I’m sure you all remember from your RHCSA exam prep, we’ll assign a connection to the eth1 interface to set up the static IP of the router on the LAN side and bring it up.  So assuming that your WAN on eth0 is already up (check with nmcli con show) and has a connection via DHCP, let’s make a connection for LAN/eth1 (my enp0s8)&hellip;</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ nmcli con add con-name lanSide-enp0s8 ifname enp0s8 type ethernet ip4 <span style="color:#ae81ff">192</span>.168.69.1/24 gw4 <span style="color:#ae81ff">192</span>.168.69.1
+$ nmcli con modify lanSide-enp0s8 ipv4.dns <span style="color:#ae81ff">192</span>.168.69.1</code></pre></div>
+
+<p>Before we bring up the connection, let’s set up dnsmasq.  dnsmasq will serve as both our DNS and DHCP servers which is really nice!  Go ahead and open /etc/dnsmasq.conf with your favorite editor&hellip;</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ vi /etc/dnsmasq.conf</code></pre></div>
+
+<p>And add the following lines:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Bind dnsmasq to only serving on the LAN interface</span>
+interface<span style="color:#f92672">=</span>enp0s8
+bind-interfaces
+<span style="color:#75715e"># Listen on the LAN address assigned to this Linux router machine</span>
+listen-address<span style="color:#f92672">=</span><span style="color:#ae81ff">192</span>.168.69.1
+<span style="color:#75715e"># Upstream DNS, we&#39;re using Google here</span>
+server<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>.8.8.8
+<span style="color:#75715e"># Never forward plain/short names</span>
+domain-needed
+<span style="color:#75715e"># Never forward addresses in the non-routed address space (bogon networks)</span>
+bogus-priv
+<span style="color:#75715e"># Sets the DHCP range (keep some for static assignments), and the lifespan of the DHCP leases</span>
+dhcp-range<span style="color:#f92672">=</span><span style="color:#ae81ff">192</span>.168.69.100,192.168.69.250,12h
+<span style="color:#75715e"># The domain to append short requests to, all clients in the 192.168.69.0/24 subnet have FQDNs based on their hostname</span>
+domain<span style="color:#f92672">=</span>kemo.priv-int,192.168.69.0/24
+local<span style="color:#f92672">=</span>/kemo.priv-int/
+<span style="color:#75715e"># Add domain name automatically</span>
+expand-hosts</code></pre></div>
+
+<p>Annnd go ahead and save that file.</p>
+
+<p>Now, on a RHEL/CentOS 7 machine, we have firewalld enabled by default so let’s make sure to enable those services.</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ firewall-cmd --add-service<span style="color:#f92672">=</span>dns --permanent
+$ firewall-cmd --add-service<span style="color:#f92672">=</span>dhcp --permanent
+$ firewall-cmd --add-service<span style="color:#f92672">=</span>ntp --permanent
+$ firewall-cmd --reload</code></pre></div>
+
+<p>Next, we’ll need to tell the Linux kernel to forward packets by modifying the /etc/sysctl.conf file and add the following line:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">net.ipv4.ip_forward<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span></code></pre></div>
+
+<p>It might already be in the file but commented out, so simply remove the pound/hashtag in front and that’ll do.  Still, need to enable it though:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ echo <span style="color:#ae81ff">1</span> &gt; /proc/sys/net/ipv4/ip_forward</code></pre></div>
+
+<p>Yep, almost set so let’s just bring up the network interface connection for eth1, set some iptable NAT masquerading and save it, and enable dnsmasq&hellip;</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE
+$ iptables -A FORWARD -i enp0s3 -o enp0s8 -m state --state RELATED,ESTABLISHED -j ACCEPT
+$ iptables -A FORWARD -i enp0s8 -o enp0s3 -j ACCEPT
+$ firewall-cmd --permanent --direct --passthrough ipv4 -t nat -I POSTROUTING -o enp0s3 -j MASQUERADE -s <span style="color:#ae81ff">192</span>.168.69.0/24
+$ iptables-save &gt; /etc/iptables.ipv4.nat
+$ nmcli con up lanSide-enp0s8
+$ systemctl enable dnsmasq <span style="color:#f92672">&amp;&amp;</span> systemctl start dnsmasq</code></pre></div>
+
+<h2 id="step-2-connect-clients-test">Step 2 – Connect Clients &amp; Test</h2>
+
+<p>So this part is pretty easy actually, you’ll just need to connect the clients/nodes to the same switch, or make a few other VMs in the same internal network.  Then you can check for DHCP leases with the following command:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ tail -f /var/lib/dnsmasq/dnsmasq.leases</code></pre></div>
+
+<p>And you should see the lease time, MAC address, associated IP, and client hostname listed for each connected client on this routed network!  We should be able to ping all those hostnames now too&hellip;</p>
+
+<p>This is great, and we have many of the core components needed by a routed and switched network.  Our use case needs some very special considerations for time synchronization so we’ll use this same Linux router to offer NTP services to the cluster as well!</p>
+
+<h2 id="step-3-add-ntp">Step 3 – Add NTP</h2>
+
+<p>Here most people would choose to use NTPd which is perfectly fine.  However, RHEL and CentOS (and many other modern Linux distros) come preconfigured with Chronyd which is sort of a newer, better, faster, stronger version of NTPd with some deeper integrations into systemd.  So today I’ll be using Chronyd to setup an NTP server on this Linux router.  Chronyd is also a bit better for disconnected environments, too.</p>
+
+<p>Essentially, we just need to modify the /etc/chrony.conf and set the following lines:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">stratumweight <span style="color:#ae81ff">0</span>
+local stratum <span style="color:#ae81ff">10</span>
+allow <span style="color:#ae81ff">192</span>.168.69.0/24</code></pre></div>
+
+<p>After that, enable NTP synchronization and restart with:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">timedatectl set-ntp <span style="color:#ae81ff">1</span>
+systemctl restart chronyd</code></pre></div>
+
+<p>And give that a moment to sync and you should have a fully functional network core based on simple Linux and a few packages!</p>
+
+<h2 id="next-steps">Next Steps</h2>
+
+<p>There are a few things that come to mind that you could do in this sort of environment&hellip;</p>
+
+<ul>
+<li>Create an actual GPS-based NTP Server – Be your own source!</li>
+<li>Set Static Host/IP Mappings – Make sure you have a section of IPs available that aren’t in the DHCP block to set the static IP reservations to.</li>
+<li>Create site-to-site VPNs – Tack on a bit of OpenVPN and we could easily create a secure site-to-site VPN to join networks or access other resources!</li>
+<li>Anything in your router’s web UI – Pretty much every router out there runs some sort of Linux embedded, and they’re all abstracting elements and functions that are primarily built-in and accessible to everyone.  Set up port-forwarding?  No problem. Add UPnP?  Not too hard either.</li>
+<li>Add PiHole Ad-Blocker – Maybe you’re using a Raspberry Pi as a wireless bridge to connect some hard wired devices on a switch to a wifi network.  Wouldn’t it be nice to block ads for all those connected devices?  You can with PiHole!</li>
+</ul>
+
+</div>
+
+  
+<footer class='entry-footer'>
+  <div class='container sep-before'><div class='last-updated'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34" />
+  <polygon points="18 2 22 6 12 16 8 16 8 12 18 2" />
+  
+</svg>
+<span class='screen-reader-text'>Last updated: </span>
+      <time class='entry-date' datetime='2019-07-22T23:25:39-05:00'>2019, Jul 22</time>
+    </div><div class='tags'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+<span class='screen-reader-text'>Tags: </span><a class='tag' href='/tags/administration/'>administration</a>, <a class='tag' href='/tags/centos/'>centos</a>, <a class='tag' href='/tags/chrony/'>chrony</a>, <a class='tag' href='/tags/chronyd/'>chronyd</a>, <a class='tag' href='/tags/cluster/'>cluster</a>, <a class='tag' href='/tags/cumulus/'>cumulus</a>, <a class='tag' href='/tags/debian/'>debian</a>, <a class='tag' href='/tags/dhcp/'>dhcp</a>, <a class='tag' href='/tags/dns/'>dns</a>, <a class='tag' href='/tags/gluster/'>gluster</a>, <a class='tag' href='/tags/guide/'>guide</a>, <a class='tag' href='/tags/kubernetes/'>kubernetes</a>, <a class='tag' href='/tags/linux/'>linux</a>, <a class='tag' href='/tags/linux-networking/'>linux networking</a>, <a class='tag' href='/tags/network/'>network</a>, <a class='tag' href='/tags/networking/'>networking</a>, <a class='tag' href='/tags/ntp/'>ntp</a>, <a class='tag' href='/tags/raspberry-pi/'>raspberry pi</a>, <a class='tag' href='/tags/red-hat/'>red hat</a>, <a class='tag' href='/tags/rhel/'>rhel</a>, <a class='tag' href='/tags/sdn/'>sdn</a>, <a class='tag' href='/tags/software-defined-networking/'>software defined networking</a>, <a class='tag' href='/tags/tutorial/'>tutorial</a>, <a class='tag' href='/tags/ubuntu/'>ubuntu</a>, <a class='tag' href='/tags/walkthrough/'>walkthrough</a></div>
+
+  </div>
+</footer>
+
+
+</article>
+
+<nav class='entry-nav'>
+  <div class='container'>
+  <div class="row"><div class='prev-entry sep-before col-sm-12 col-md-6'>
+      <a href='/blog/rolling-up-lets-encrypt-on-ansible-towers-ui/'>
+        <span aria-hidden='true'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="20" y1="12" x2="4" y2="12"/>
+  <polyline points="10 18 4 12 10 6"/>
+  
+</svg>
+ Previous</span>
+        <span class='screen-reader-text'>Previous post: </span>Rolling up Let’s Encrypt on Ansible Tower’s UI</a>
+    </div><div class='next-entry sep-before col-sm-12 col-md-6 text-right'>
+      <a href='/blog/quick-n-dirty-adding-disks-to-proxmox/'>
+        <span class='screen-reader-text'>Next post: </span>Quick n’ Dirty – Adding disks to Proxmox with LVM<span aria-hidden='true'>Next <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="4" y1="12" x2="20" y2="12"/>
+  <polyline points="14 6 20 12 14 18"/>
+  
+</svg>
+</span>
+      </a>
+    </div></div>
+  </div>
+</nav>
+
+
+
+
+      </main>
+
+      <footer id='footer' class='footer'>
+        <div class='container sep-before'><section class='widget widget-social_menu sep-after'><nav aria-label='Social Menu'>
+    <ul><li>
+        <a href='https://github.com/kenmoini' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Github account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://twitter.com/notkemo' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Twitter account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://instagram.com/kenmoini' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Instagram account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+  <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='mailto:ken@kenmoini.com' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Contact via Email</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+  <polyline points="22,6 12,13 2,6"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://linkedin.com/in/kenmoini' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Linkedin account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+  <rect x="2" y="9" width="4" height="12"/>
+  <circle cx="4" cy="4" r="2"/>
+  
+</svg>
+</a>
+      </li></ul>
+  </nav>
+</section><div class='copyright'>
+  <p></p>
+</div>
+
+          
+          
+          <small style="color:#333" class="muted"><em>Rev 58795f5</em></small>
+          
+        </div>
+      </footer>
+
+    </div>
+  </div><script>window.__assets_js_src ="/assets/js/"</script>
+
+<script src='https://www.kenmoini.com/assets/js/main.9e5c4cf4.js'></script><script src='/js/custom.js'></script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

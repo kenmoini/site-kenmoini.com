@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang='en'><head>
+  <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content='When I was at Red Hat Summit, I spent the last day in some sweatpants and meandered about the showroom floor trying to hide my Executive Exchange badge from all the sales vultures. They announced over the loudspeaker that they were closing up shop soon, and so I made my last round across the room. To my surprise, there were rows I hadn&rsquo;t gone to yet – the place was massive.'>
+<meta name='theme-color' content='#de0066'>
+
+<meta property='og:title' content='Kubernetes on Linode – A Quick Start of Sorts - Ken Moini'>
+<meta property='og:description' content='When I was at Red Hat Summit, I spent the last day in some sweatpants and meandered about the showroom floor trying to hide my Executive Exchange badge from all the sales vultures. They announced over the loudspeaker that they were closing up shop soon, and so I made my last round across the room. To my surprise, there were rows I hadn&rsquo;t gone to yet – the place was massive.'>
+<meta property='og:url' content='https://www.kenmoini.com/blog/kubernetes-on-linode-a-quick-start-of-sorts/'>
+<meta property='og:site_name' content='Ken Moini'>
+<meta property='og:type' content='article'><meta property='article:section' content='blog'><meta property='article:tag' content='cert-manager'><meta property='article:tag' content='certbot'><meta property='article:tag' content='containers'><meta property='article:tag' content='devops'><meta property='article:tag' content='docker'><meta property='article:tag' content='fedora'><meta property='article:tag' content='FOSS'><meta property='article:tag' content='guide'><meta property='article:tag' content='hashicorp'><meta property='article:tag' content='helm'><meta property='article:tag' content='ingress'><meta property='article:tag' content='k8s'><meta property='article:tag' content='kuard'><meta property='article:tag' content='kubernetes'><meta property='article:tag' content='let&#39;s encrypt'><meta property='article:tag' content='linode'><meta property='article:tag' content='memes'><meta property='article:tag' content='minikube'><meta property='article:tag' content='minio'><meta property='article:tag' content='minishift'><meta property='article:tag' content='nginx'><meta property='article:tag' content='nodebalancer'><meta property='article:tag' content='oci'><meta property='article:tag' content='open source'><meta property='article:tag' content='openshift'><meta property='article:tag' content='OSS'><meta property='article:tag' content='quick start'><meta property='article:tag' content='red hat'><meta property='article:tag' content='s3'><meta property='article:tag' content='ssl'><meta property='article:tag' content='terraform'><meta property='article:tag' content='tiller'><meta property='article:tag' content='tutorial'><meta property='article:published_time' content='2019-07-08T22:31:48-05:00'/><meta property='article:modified_time' content='2019-07-22T23:25:39-05:00'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@notkemo'>
+
+<meta name="generator" content="Hugo 0.55.6" />
+
+  <title>Kubernetes on Linode – A Quick Start of Sorts - Ken Moini</title>
+  <link rel='canonical' href='https://www.kenmoini.com/blog/kubernetes-on-linode-a-quick-start-of-sorts/'>
+  
+  
+  <link rel='icon' href='/favicon.ico'>
+<link rel='stylesheet' href='/assets/css/main.fb20af92.css'><link rel='stylesheet' href='/css/custom.css'><style>
+    :root{--color-accent:#de0066;}
+    blockquote { border-left: .2em solid#de0066;}
+    :root{background-color:#000;}
+    body{color:#EEE;}
+    .title, h1, h2, h3, h4, h5, h6 {color:#EEE;}
+    a, .menu a, .sidebar-toggler span, .sub-menu-toggler, .widget-social_menu a {color:#ff9800;}
+    .menu li.current > a, a:focus, a:hover, .menu a:focus, .menu a:hover, .sidebar-toggler span:focus, .sidebar-toggler span:hover, .sub-menu-toggler:focus, .sub-menu-toggler:hover, .widget-social_menu a:focus, .widget-social_menu a:hover {color:#de0066;}
+</style>
+    
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap-grid.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/css/kemo.css">
+<link href="/vendor/fontawesome-free-5.9.0-web/css/all.css" rel="stylesheet"> 
+</head>
+<body class='page type-blog'>
+
+  <div class='site'><a class='screen-reader-text' href='#content'>Skip to Content</a><div class='main'><nav id='main-menu' class='menu main-menu' aria-label='Main Menu'>
+  <div class='container'>
+    
+    <ul>
+      <li class="">
+          <a href="/" title="Home - Ken Moini"><i class="fa fa-home"></i></a>
+      </li><li class='item'>
+        <a href='/about/' class="about">
+          <span>About</span>
+        </a>
+      </li><li class='item'>
+        <a href='/links/' class="links">
+          <span>Links</span>
+        </a>
+      </li><li class='item'>
+        <a href='/blog/' class="blog">
+          <span>Blog</span>
+        </a>
+      </li></ul>
+  </div>
+</nav><div class='header-widgets'>
+        <div class='container'></div>
+      </div>
+
+      <main id='content'>
+
+
+<article lang='en' class='entry'>
+  <header class='header entry-header'>
+  <div class='container sep-after'>
+    <div class='header-info'>
+      <h1 class='title'>Kubernetes on Linode – A Quick Start of Sorts</h1>
+      
+
+    </div>
+    <div class='entry-meta'>
+  <span class='posted-on'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+  
+</svg>
+<span class='screen-reader-text'>Posted on </span>
+  <time class='entry-date' datetime='2019-07-08T22:31:48-05:00'>2019, Jul 08</time>
+</span>
+
+  
+  
+<span class='reading-time'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <circle cx="12" cy="12" r="10"/>
+  <polyline points="12 6 12 12 15 15"/>
+  
+</svg>
+17 mins read
+</span>
+
+
+  
+  
+</div>
+
+
+  </div>
+</header>
+
+  
+  
+
+  <div class='container entry-content'>
+  
+
+<p>When I was at Red Hat Summit, I spent the last day in some sweatpants and meandered about the showroom floor trying to hide my Executive Exchange badge from all the sales vultures.  They announced over the loudspeaker that they were closing up shop soon, and so I made my last round across the room.  To my surprise, there were rows I hadn&rsquo;t gone to yet – the place was massive.  Next thing that surprised me was to see a <a href="https://www.linode.com/?r=c4acc0a829d048727ced26c4920968c9bc6597fd">Linode</a> booth so as a loyal customer I walked on over.  Chatted real quick, gave a jab about how I can&rsquo;t deploy Red Hat Enterprise Linux on Linode instances unless I install it manually which is kind of a pain.  Their new Cloud Manager allows you to easily make your own Images but it can&rsquo;t be created from Raw or Custom deployed block devices, which is the only way to install RHEL on Linode&hellip;<em>sigh</em></p>
+
+<p>Anywho, so it looks like my dreams of easily deploying Red Hat OpenShift on Linode are set for another day…BUT what I can do today is deploy Kubernetes on Linode, which is basically OpenShift without a lot of the things that make using Kubernetes easy.  Oh well, the fun part of vanilla Kubernetes is how daunting it can be! &hellip;right?  Right?!</p>
+
+<p>So recently Linode released a kinda easy way to deploy a Kubernetes cluster on their cloud – sweet!  Let&rsquo;s use that and learn raw dog K8s!</p>
+
+<figure class="col-sm-12 text-center">
+    <img src="/images/content-stuff/so-you-want-5cb6ac.jpg"/> 
+</figure>
+
+
+<h2 id="foreword">Foreword</h2>
+
+<p>This will quickly deploy a Kubernetes cluster with Terraform (via the linode-cli k8s-alpha provisioner) so you&rsquo;re not putting all the tiny pieces together.  However, there is still work involved to get it to serve containers on the public Internet.  Most guides I&rsquo;ve seen so far stop at the cluster provisioning – like what the fuck do you do after you have 4 servings of Kubernetes?</p>
+
+<p>This guide will show you how to swim in the wave pool with some steps into Service Account User creation, accessing the Kubernetes Dashboard, Installing Helm and Tiller, creating an Ingress Controller, how to deploy your first container, and how to access it on the Internet with SSL certificates automatically provisioned.</p>
+
+<figure class="col-sm-12 text-center">
+    <img src="/images/content-stuff/butwaittheresmore.png"/> 
+</figure>
+
+
+<h2 id="prerequisites-and-setup">Prerequisites and Setup</h2>
+
+<p>First thing you&rsquo;re gonna need is to download a few components, Python (2.7), pip, Terraform, the Linode CLI, and some SSH application.  Honestly, I tried installing this from my Windows 10 desktop with Git Bash and it did not work at all.  Deployed it from my Linux laptop and boom worked right away.  So honestly, I&rsquo;d just roll a Linux VM if you don&rsquo;t use it as your daily driver.  It&rsquo;ll also make interacting with the Kubernetes cluster that much easier.  For these purposes, I installed a fresh copy of Fedora 30 Workstation as a VM on my desktop, ensuring the network is set to Bridge Mode to my home router – NAT messes everything up with Terraform for some reason&hellip;  If you do the same then you can run the following commands to get it up to speed:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo yum update -y
+$ sudo yum install python2-pip wget curl
+$ sudo pip install linode-cli
+$ wget https://releases.hashicorp.com/terraform/0.11.14/terraform_0.11.14_linux_amd64.zip <span style="color:#f92672">&amp;&amp;</span> unzip terraform*.zip
+$ chmod +x terraform
+$ sudo mv terraform /usr/bin/
+$ ssh-keygen -t rsa -b <span style="color:#ae81ff">4096</span></code></pre></div>
+
+<p>What that does is:</p>
+
+<ul>
+<li>Update all existing packages</li>
+<li>Install Python &amp; Pip, wget, and curl</li>
+<li>Install Linode CLI</li>
+<li>Install Terraform – Uses a specific version of Terraform, as of this writing only version 0.11.14 works with the deployer as there were changes made in 0.12+</li>
+<li>Generates SSH Keys for your user – this will be used when deploying and connecting to the Kubernetes cluster.</li>
+</ul>
+
+<p>Next you&rsquo;ll need to install kubeadm, kubelet, and kubectl – follow the instructions here: <a href="https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#installing-kubeadm-kubelet-and-kubectl">https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#installing-kubeadm-kubelet-and-kubectl</a></p>
+
+<p>Now you&rsquo;ll need to create a <strong>Personal Access Token</strong> in the Linode Cloud Manager.  Head on over to <a href="https://cloud.linode.com/profile/tokens">https://cloud.linode.com/profile/tokens</a> and create a new <strong>Personal Access Token</strong>.  Once you have that, the last step of setup is to paste it in when prompted by running the Linode CLI command:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ linode-cli</code></pre></div>
+
+<p>Enter your Personal Access Token and you&rsquo;ll be able to continue with the creation of the Kubernetes cluster.
+Once you enter your token, you&rsquo;ll be prompted for some preferences. First, you&rsquo;ll select your <strong>Default Region</strong>, then the <strong>Default Type of Linode</strong> to deploy – choose your region, the type I suggest is g6-standard-2.  The next question about <strong>Default Image to Deploy</strong> I&rsquo;d suggest skipping.  You can reconfigure these defaults at any time by running <strong><em>linode-cli configure</em></strong>.</p>
+
+<h2 id="create-your-kubernetes-cluster">Create your Kubernetes Cluster</h2>
+
+<p>This is actually pretty easy – most of the work so far is getting things set up to run this one command (replacing your-cluster-name with&hellip;well&hellip;):</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ linode-cli k8s-alpha create your-cluster-name</code></pre></div>
+
+<p>The default configuration will use the SSH key we created earlier and spin up 4 new Linodes, 1 Kubernetes Master and 3 Kubernetes Application nodes, all at g6-standard-2 in your default region.  What will happen is a Terraform configuration will be generated and it will ask you to approve these actions – just type in “yes” then wait a few minutes.  Ok, actually you&rsquo;ll wait probably about 15-30 minutes for the cluster to spin up.  As of this writing it&rsquo;s not the latest and greatest Kubernetes version out, 1.15 but rather the cluster is set to install Kubernetes 1.13.6 which all in all isn&rsquo;t too bad as that&rsquo;s closer to what Red Hat OpenShift 3.11 is running right now.</p>
+
+<figure class="col-sm-12 text-center">
+    <img src="/images/content-stuff/Screenshot-from-2019-07-08-09-25-00-1024x653.png"/> 
+</figure>
+
+
+<h2 id="accessing-and-interacting-with-the-kubernetes-cluster">Accessing and Interacting with the Kubernetes Cluster</h2>
+
+<p>Kubernetes is a platform – a platform that lets you build other platforms&hellip;ha.  Either way, the normal way you&rsquo;ll be interacting with the cluster is via the command line – this is because Kubernetes is intended to be heavily automated.  That&rsquo;s not fun though and we like Web UIs and Dashboards!  Once the cluster is spun up, run the following commands:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl cluster-info
+$ kubectl get pods --all-namespaces
+$ kubectl proxy</code></pre></div>
+
+<p>Those commands do the following:</p>
+
+<ul>
+<li>Print out the basic cluster information</li>
+<li>Get all the of pods running in all namespaces in the cluster – check to ensure all of the pods are in a “Running” state</li>
+<li>Opens a proxy between the Kubernetes cluster and your local machine</li>
+</ul>
+
+<p>Normally a Kubernetes cluster doesn&rsquo;t expose its resources as a security pattern – normally.  There are plenty of open and insecure K8s clusters and dashboards unknowingly mining Monero…we&rsquo;ll get into basic security in a second.</p>
+
+<p>When running the kubectl proxy command, you&rsquo;ll create a direct proxy to the cluster so you can access things like the Kubernetes Dashboard via <a href="http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/">http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/</a></p>
+
+<p>Now you should be prompted with a login prompt with two ways of Signing In, either with a Kubeconfig file or a Bearer Token.</p>
+
+<h2 id="creating-a-new-service-account-user-with-the-cluster-admin-role">Creating a new Service Account User – with the cluster-admin role!</h2>
+
+<p>The default system user isn&rsquo;t properly scoped so let&rsquo;s go ahead and <a href="https://github.com/kubernetes/dashboard/wiki/Creating-sample-user">create a new user</a>, add the cluster-admin ClusterRole to it, and log in with the new user&rsquo;s Bearer Token.  To do this, you&rsquo;ll need to create two new files, replacing YOUR-USER-NAME with a username of your choice:</p>
+
+<p><strong>create-user.yaml</strong></p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: YOUR-USER-NAME
+  namespace: kube-system</code></pre></div>
+
+<p><strong>add-cluster-admin-role.yaml</strong></p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: YOUR-USER-NAME
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: YOUR-USER-NAME
+  namespace: kube-system</code></pre></div>
+
+<p>Once you have those two files made, you can run them against your Kubernetes cluster by running the following commands:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl apply -f create-user.yaml
+$ kubectl apply -f add-cluster-admin-role.yaml</code></pre></div>
+
+<p>Something to make mention here is that we&rsquo;ve just created a user with the cluster-admin role, which means they are as you can imagine, super-admin across the whole cluster and all namespaces. Be very careful with this user – but you&rsquo;ll notice we didn&rsquo;t apply a password. This is because we&rsquo;ll be using a Secret, specifically this user&rsquo;s Bearer Token which is another form of authentication that&rsquo;s tied to the user we just created. To find your user&rsquo;s Bearer Token run the following command, replacing YOUR-USER-NAME with whatever you chose earlier:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n kube-system describe secret <span style="color:#66d9ef">$(</span>kubectl -n kube-system get secret | grep YOUR-USER-NAME | awk <span style="color:#e6db74">&#39;{print $1}&#39;</span><span style="color:#66d9ef">)</span></code></pre></div>
+
+<p>That will spit out your Service Account&rsquo;s Bearer Token, which you can use to authenticate with the cluster via things like the Kubernetes Dashboard…go back to that link <a href="http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/">http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/</a> and paste in your Bearer Token and you should now be greeted with full access to your Kubernetes cluster via the Dashboard! Woohoo! FINALLY!  We can start doing Kubernetes, right?!  Wrong.</p>
+
+<figure class="col-sm-12 text-center">
+    <img src="/images/content-stuff/1_TgP46mqoShBuHLK81H5ehA.jpeg"/> 
+</figure>
+
+
+<h2 id="installing-helm-and-tiller">Installing Helm and Tiller</h2>
+
+<p>Helm Charts are a great way to deploy a set of Kubernetes objects as a bundle and has mechanisms for management and upgrades – think of it as the Kubernetes package manager.  There are other technologies similar to this such as Kubernetes Operators, you can use either or both.  Here we&rsquo;ll set up Helm and Tiller.  Helm is the client-side portion while Tiller is deployed onto the Kubernetes cluster and runs the Helm Charts.  It&rsquo;s pretty easy to deploy – you can glance at the instructions here, find your specific release and unpack it into a PATH directory.  Assuming you&rsquo;re running Linux AMD64 as I am, here are the commands as of the writing of this guide:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ wget https://get.helm.sh/helm-v2.14.1-linux-amd64.tar.gz
+$ tar zxvf helm-v2*.tar.gz
+$ sudo mv linux-amd64/helm /usr/local/bin/helm
+$ helm --help</code></pre></div>
+
+<figure class="col-sm-12 text-center">
+    <img src="/images/content-stuff/DmO3i5WWwAAUq4w.jpg"/> 
+</figure>
+
+
+<p>You should now be able to see the Help output of the Helm command. These Go apps are so easy to install with their binaries… Anywho, the cluster has been provisioned with RBAC so let&rsquo;s create a Service Account for Tiller to use on the cluster. As listed in the documentation on Tiller and Role-Based Access Control, you can quickly make a Service Account with the following YAML:</p>
+
+<p><strong>tiller-rbac-config.yaml</strong></p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: tiller
+  namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: tiller
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: tiller
+    namespace: kube-system</code></pre></div>
+
+<p>Then apply the new Service Account to the cluster with the following command:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl apply -f tiller-rbac-config.yaml</code></pre></div>
+
+<p>We can&rsquo;t deploy Helm and Tiller yet to the cluster – we still need to create some SSL certs as by default Tiller is left to be used by anyone, yikes! Let&rsquo;s generate a few SSL certs – the following will be a series of commands though you&rsquo;ll need to answer a few questions in most of the commands to continue:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ mkdir helm-tiller-certs <span style="color:#f92672">&amp;&amp;</span> cd helm-tiller-certs
+$ echo subjectAltName<span style="color:#f92672">=</span>IP:127.0.0.1 &gt; extfile.cnf
+$ openssl genrsa -out ./ca.key.pem <span style="color:#ae81ff">4096</span>
+$ openssl req -key ca.key.pem -new -x509 -days <span style="color:#ae81ff">7300</span> -sha256 -out ca.cert.pem -extensions v3_ca
+$ openssl genrsa -out ./tiller.key.pem <span style="color:#ae81ff">4096</span>
+$ openssl genrsa -out ./helm.key.pem <span style="color:#ae81ff">4096</span>
+$ openssl req -key tiller.key.pem -new -sha256 -out tiller.csr.pem
+$ openssl req -key helm.key.pem -new -sha256 -out helm.csr.pem
+$ openssl x509 -req -CA ca.cert.pem -CAkey ca.key.pem -CAcreateserial -in tiller.csr.pem -out tiller.cert.pem -days <span style="color:#ae81ff">365</span> -extfile extfile.cnf
+$ openssl x509 -req -CA ca.cert.pem -CAkey ca.key.pem -CAcreateserial -in helm.csr.pem -out helm.cert.pem  -days <span style="color:#ae81ff">365</span> -extfile extfile.cnf
+$ cp ca.cert.pem <span style="color:#66d9ef">$(</span>helm home<span style="color:#66d9ef">)</span>/ca.pem
+$ cp helm.cert.pem <span style="color:#66d9ef">$(</span>helm home<span style="color:#66d9ef">)</span>/cert.pem
+$ cp helm.key.pem <span style="color:#66d9ef">$(</span>helm home<span style="color:#66d9ef">)</span>/key.pem</code></pre></div>
+
+<p>At this point, we should have generated a bunch of keys and certificates such as:</p>
+
+<ul>
+<li>The CA. Make sure the key is kept secret.
+
+<ul>
+<li>ca.cert.pem</li>
+<li>ca.key.pem</li>
+</ul></li>
+<li>The Helm client files
+
+<ul>
+<li>helm.cert.pem</li>
+<li>helm.key.pem</li>
+</ul></li>
+<li>The Tiller server files.
+
+<ul>
+<li>tiller.cert.pem</li>
+<li>tiller.key.pem</li>
+</ul></li>
+</ul>
+
+<p>You can read more about the PKI process here: <a href="https://helm.sh/docs/using_helm/#generating-certificate-authorities-and-certificates">https://helm.sh/docs/using_helm/#generating-certificate-authorities-and-certificates</a>
+Now, finally we can deploy Helm and Tiller to the Kubernetes cluster:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ helm init <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>--override <span style="color:#e6db74">&#39;spec.template.spec.containers[0].command&#39;</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;{/tiller,--storage=secret}&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>--tiller-tls <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>--tiller-tls-verify <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>--tiller-tls-cert<span style="color:#f92672">=</span>tiller.cert.pem <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>--tiller-tls-key<span style="color:#f92672">=</span>tiller.key.pem <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>--tls-ca-cert<span style="color:#f92672">=</span>ca.cert.pem <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>--service-account<span style="color:#f92672">=</span>tiller <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>--history-max <span style="color:#ae81ff">200</span></code></pre></div>
+
+<p>If all goes well, that should install the Tiller component on the Kubernetes cluster. To access Tiller you&rsquo;ll need to forward a port from the cluster to your local machine. You can test it with the following commands:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl -n kube-system port-forward svc/tiller-deploy <span style="color:#ae81ff">44134</span>:44134
+$ helm install stable/minio --tls --name my-minio
+$ helm list --tls
+$ helm delete my-minio --tls</code></pre></div>
+
+<h2 id="ingress-controller">Ingress Controller</h2>
+
+<p>There are a few different Ingress Controllers you can use such as a NodePort or Load Balancer, but for our purposes let&rsquo;s use an Nginx Ingress Controller as it&rsquo;s a little more flexible.  Also, when deploying a Load Balancer directly into Linode&rsquo;s NodeBalancer service, the charges start to stack up quickly.  Thankfully we can quickly deploy an Nginx Ingress Controller with a Helm Chart&hellip;</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ helm install stable/nginx-ingress --name nginx-ingress --set rbac.create<span style="color:#f92672">=</span>true --tls</code></pre></div>
+
+<p>That will deploy an Nginx Ingress Controller which will create a Linode NodeBalancer pointing to your nodes. This is where things get kinda slick – we&rsquo;re only going to need one NodeBalancer as this Ingress Controller can route any domain we have pointing to it! Let&rsquo;s make sure to do that – this is the time that you&rsquo;ll add the desired DNS records.</p>
+
+<h2 id="dns-on-linode">DNS on Linode</h2>
+
+<p>So DNS on Linode is a funny thing&hellip;if you go through their traditional Control Panel at <a href="https://manager.linode.com/">https://manager.linode.com/</a> and try to set any wildcard DNS entries you&rsquo;ll get an error. However, if you goto their fancy-schmancy new <a href="https://cloud.linode.com">https://cloud.linode.com</a> Cloud Manager you can create wildcard DNS entries to your heart&rsquo;s content! This is what&rsquo;s key in being able to use only one NodeBalancer – if you went with the traditional ExternalDNS + LoadBalancer ingress objects then you&rsquo;d have to wait while the Linode DNS servers propagate your entries which can take up to 30 minutes, and then you&rsquo;d be buying a separate NodeBalancer for each Ingress object! Yikes!</p>
+
+<figure class="col-sm-12 text-center">
+    <img src="/images/content-stuff/d002cd3bce067290b5ea82850d862f4a15b8f0acaab7098cde9f8b1e24999f39.jpg"/> 
+</figure>
+
+
+<p>Here are the general steps to do this One NodeBalancer + Wildcard DNS thing; you don&rsquo;t need a wildcard DNS entry, you can point a specific A record to the NodeBalancer but wildcards make it easier to deploy quickly on Kubernetes.</p>
+
+<ol>
+<li>Log into your Linode account at <a href="https://cloud.linode.com">https://cloud.linode.com</a> and head over to the NodeBalancers page – you should see the NodeBalancer created by the Nginx Ingress Controller we just deployed with Helm</li>
+<li>Take that external IP Address and copy it into your clipboard – we&rsquo;ll use this for whatever we point to the Kubernetes cluster</li>
+<li>Go into the Domains page and select the Domain Name Zone that you&rsquo;d like to use, let&rsquo;s just call it <strong><em>example.com</em></strong></li>
+<li>If you wanted to have your exposed services as <strong><em>myapp.example.com, myotherapp.example.com, etc.example.com</em></strong> then you can create an A record of * pointing to the external IP of the NodeBalancer.  Any A record that isn&rsquo;t specifically named and pointing to another destination will be matched by this wildcard and sent to the NodeBalancer, which is pointed to the Nginx Ingress on the Kubernetes cluster</li>
+<li>Wait a while as it propagates&hellip;</li>
+<li>????????</li>
+<li>PROFIT!!!!!1</li>
+</ol>
+
+<p>So one last thing you need to do is delete the ExternalDNS deployment in your Kubernetes cluster. As of this writing, the K8s cluster deployed with the linode-cli will try to provision DNS entries in Linode for every ingress route you publish on the cluster – Snoozeville, that takes too long. This can be bad since it&rsquo;ll create A records pointing the specific route directly to the external Kubernetes Worker Node IP address. We don&rsquo;t want this as it&rsquo;ll override the wildcards and any other DNS we set to the NodeBalancer. Go ahead and delete the ExternalDNS deployment with:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl delete deployment -n kube-system external-dns</code></pre></div>
+
+<h2 id="on-demand-ssl-certificates-for-routes">On-Demand SSL Certificates for Routes</h2>
+
+<figure class="col-sm-12 text-center">
+    <img src="/images/content-stuff/1cvwdb.jpg"/> 
+</figure>
+
+
+<p>Once we&rsquo;ve got DNS routing all our desired domains to the NodeBalancer in front of the Nginx Ingress on the Kubernetes cluster, we need to add SSL termination.  You can do this in a number of ways but the easiest one I&rsquo;ve found so far is with cert-manager.  The idea is simple: if the domain responds then you get a cert.  Since we&rsquo;ve got a wildcard A record pointing to the cluster, any of those subdomains should be able to automagically get an SSL certificate.  This doesn&rsquo;t do the whole ACME/DNS-tls01 thing as that requires access to the Linode DNS API which again, can be slow and I&rsquo;ve seen only times out.  Anywho, let&rsquo;s get to deploying cert-manager which is pretty easy now that we have this fancy Helm thing&hellip;</p>
+
+<p>First, we need a service to route to…let&rsquo;s use the KUAR Demo application.</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl apply -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.8/docs/tutorials/acme/quick-start/example/deployment.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.8/docs/tutorials/acme/quick-start/example/service.yaml</code></pre></div>
+
+<p>So we&rsquo;ve got a basic application and service on the cluster, let&rsquo;s install the cert-manager service [as described by the <a href="https://github.com/jetstack/cert-manager/blob/master/docs/tutorials/acme/quick-start/index.rst">documentation</a>]:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl apply -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.8/deploy/manifests/00-crds.yaml
+$ kubectl create namespace cert-manager
+$ kubectl label namespace cert-manager certmanager.k8s.io/disable-validation<span style="color:#f92672">=</span>true
+$ helm repo add jetstack https://charts.jetstack.io
+$ helm repo update
+$ helm install --tls --name cert-manager --namespace cert-manager --version v0.8.1 jetstack/cert-manager</code></pre></div>
+
+<p>Give that a few seconds and you should have cert-manager deployed. We still need to provide it some certificate Issuers – we&rsquo;ll use the trusty Let&rsquo;s Encrypt with their Staging and Production issuers. The next few lines will create new Kubernetes objects but will allow you to modify the YAML file before importing – you&rsquo;ll need to add your email address at the appropriate lines:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl create --edit -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.8/docs/tutorials/acme/quick-start/example/staging-issuer.yaml
+$ kubectl create --edit -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.8/docs/tutorials/acme/quick-start/example/production-issuer.yaml</code></pre></div>
+
+<p>Now you can use the staging Let&rsquo;s Encrypt issuer which isn&rsquo;t rate-limited and great for testing:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl create --edit -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.8/docs/tutorials/acme/quick-start/example/ingress-tls.yaml</code></pre></div>
+
+<p>Once you edit and deploy that you should have an SSL Certificate provided to that domain on that Ingress – it&rsquo;ll still an “invalid” self-signed cert but it should be issued directly to that domain. If so, then you can delete that ingress and deploy the final production issued SSL certificates with:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ kubectl create --edit -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.8/docs/tutorials/acme/quick-start/example/ingress-tls-final.yaml</code></pre></div>
+
+<p>If all things so far have gone well you should now be able to access your KUAR Demo (kuard) service that&rsquo;s being exposed via an ingress with a valid SSL certificate now!</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>If you&rsquo;ve made it this far then you&rsquo;ve got a usable Kubernetes cluster running on Linode!  With one NodeBalancer!  And automagical SSL certificates for your ingress routes!</p>
+
+<p>Either that or you&rsquo;re just skipping down for the comments because you got stuck somewhere – don&rsquo;t worry, it&rsquo;s easy to do this is Kubernetes after all.  This took me way longer than I&rsquo;d like to admit my first go around.</p>
+
+<p>To recap what we&rsquo;ve done is:</p>
+
+<ol>
+<li>Setup a new Fedora 30 VM as our jump-box of sorts</li>
+<li>Deployed Kubernetes on Linode with the linode-cli k8s-alpha provisioner</li>
+<li>Created a new service account user with cluster-admin roles to administer the cluster</li>
+<li>Opened a proxy to the cluster and accessed the Kubernetes Dashboard</li>
+<li>Installed Helm and Tiller</li>
+<li>Deployed an Nginx Ingress Controller which created a single Linode NodeBalancer</li>
+<li>Wrangled with Linode DNS to provide wildcard A name resolution to the NodeBalancer, removed ExternalDNS deployment</li>
+<li>Deployed cert-manager to provide dynamically provisioned SSL certificates from Let&rsquo;s Encrypt</li>
+<li>Accessed our first container (kuard) from the Internet with SSL!</li>
+</ol>
+
+<figure class="col-sm-12 text-center">
+    <img src="/images/content-stuff/1jlg14.jpg"/> 
+</figure>
+
+
+<h2 id="next-steps-additional-resources">Next Steps &amp; Additional Resources</h2>
+
+<p>So what to do next?  Well, you&rsquo;ll probably want a private registry, and maybe some sorta Git, and/or Jenkins so you can do that DevOps-y thing everyone&rsquo;s talking about.  Gotta make sure you secure it, probably want to dump logs into Elastic or Prometheus, add some infrastructure auto-scaling for that Enterprise Container Orchestration feel.  There are lots of places you can go but what&rsquo;s important is that you just start working with the Kubernetes platform and learning what it can offer you.  Don&rsquo;t get me wrong, it&rsquo;ll likely suck and take days of effort to get rolling to where you&rsquo;d like it, but once that platform is running it just hums.</p>
+
+<p>There are a few other resources I&rsquo;d suggest – including the obligatory books.</p>
+
+<ul>
+<li><a href="https://amzn.to/2G3EhTF"><strong>Kubernetes: Up and Running</strong></a> – Written in part by the legend himself, Kelsey Hightower.  I like this book because it has a heavy focus on the “Why” and “How” of Kubernetes and the concepts for the new infrastructure patterns offered by the Kubernetes platform.  Also, they have a part about deploying K8s on Raspberry Pis which is how I rationalized my $1,600 RPi dual K8s+Gluster cluster spend…</li>
+<li><a href="https://amzn.to/2G0Jege"><strong>Kubernetes in Action</strong></a> – This is a much deeper dive into Kubernetes and kinda gets you farther than ER-MA-GERD I HAZ DE KUBERNETES.</li>
+<li><a href="https://kubernetes.io/docs/setup/learning-environment/minikube/"><strong>Minikube</strong></a> – If you have NO CLUE what or how Kubernetes anything, start locally with Minikube before you start burning up that cloud budget.</li>
+<li><a href="https://www.openshift.com/"><strong>OpenShift</strong></a> – So the goal of this project is to lay a foundation of how to deploy OpenShift-like technology with vanilla K8s in a Public Cloud provider that resembles that of on-premise deployments.  OpenShift builds on top of Kubernetes and offers a lot of what we did today out of the box and more and I&rsquo;ve used it for a year or so and am spoiled by it…not used to doing all this heavy lifting.</li>
+<li><a href="https://github.com/minishift/minishift"><strong>Minishift</strong></a> – You bet there&rsquo;s a way to deploy OpenShift on your workstation as you would Minikube.</li>
+<li><a href="https://github.com/helm/charts/tree/master/stable"><strong>Helm Charts</strong></a> – Most of the deployments we ran today were provisioned with Helm.  You can find repos and packaged Helm Charts all over.</li>
+</ul>
+
+</div>
+
+  
+<footer class='entry-footer'>
+  <div class='container sep-before'><div class='last-updated'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34" />
+  <polygon points="18 2 22 6 12 16 8 16 8 12 18 2" />
+  
+</svg>
+<span class='screen-reader-text'>Last updated: </span>
+      <time class='entry-date' datetime='2019-07-22T23:25:39-05:00'>2019, Jul 22</time>
+    </div><div class='tags'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+<span class='screen-reader-text'>Tags: </span><a class='tag' href='/tags/cert-manager/'>cert-manager</a>, <a class='tag' href='/tags/certbot/'>certbot</a>, <a class='tag' href='/tags/containers/'>containers</a>, <a class='tag' href='/tags/devops/'>devops</a>, <a class='tag' href='/tags/docker/'>docker</a>, <a class='tag' href='/tags/fedora/'>fedora</a>, <a class='tag' href='/tags/foss/'>FOSS</a>, <a class='tag' href='/tags/guide/'>guide</a>, <a class='tag' href='/tags/hashicorp/'>hashicorp</a>, <a class='tag' href='/tags/helm/'>helm</a>, <a class='tag' href='/tags/ingress/'>ingress</a>, <a class='tag' href='/tags/k8s/'>k8s</a>, <a class='tag' href='/tags/kuard/'>kuard</a>, <a class='tag' href='/tags/kubernetes/'>kubernetes</a>, <a class='tag' href='/tags/lets-encrypt/'>let&#39;s encrypt</a>, <a class='tag' href='/tags/linode/'>linode</a>, <a class='tag' href='/tags/memes/'>memes</a>, <a class='tag' href='/tags/minikube/'>minikube</a>, <a class='tag' href='/tags/minio/'>minio</a>, <a class='tag' href='/tags/minishift/'>minishift</a>, <a class='tag' href='/tags/nginx/'>nginx</a>, <a class='tag' href='/tags/nodebalancer/'>nodebalancer</a>, <a class='tag' href='/tags/oci/'>oci</a>, <a class='tag' href='/tags/open-source/'>open source</a>, <a class='tag' href='/tags/openshift/'>openshift</a>, <a class='tag' href='/tags/oss/'>OSS</a>, <a class='tag' href='/tags/quick-start/'>quick start</a>, <a class='tag' href='/tags/red-hat/'>red hat</a>, <a class='tag' href='/tags/s3/'>s3</a>, <a class='tag' href='/tags/ssl/'>ssl</a>, <a class='tag' href='/tags/terraform/'>terraform</a>, <a class='tag' href='/tags/tiller/'>tiller</a>, <a class='tag' href='/tags/tutorial/'>tutorial</a></div>
+
+  </div>
+</footer>
+
+
+</article>
+
+<nav class='entry-nav'>
+  <div class='container'>
+  <div class="row"><div class='prev-entry sep-before col-sm-12 col-md-6'>
+      <a href='/blog/gitlab-container-registry-with-minio-custom-s3-endpoint/'>
+        <span aria-hidden='true'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="20" y1="12" x2="4" y2="12"/>
+  <polyline points="10 18 4 12 10 6"/>
+  
+</svg>
+ Previous</span>
+        <span class='screen-reader-text'>Previous post: </span>GitLab Container Registry with Minio Custom S3 Endpoint</a>
+    </div><div class='next-entry sep-before col-sm-12 col-md-6 text-right'>
+      <a href='/blog/how-to-passing-the-amazon-web-services-solution-architect-exam/'>
+        <span class='screen-reader-text'>Next post: </span>How-to: Passing the Amazon Web Services Solution Architect Exam<span aria-hidden='true'>Next <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="4" y1="12" x2="20" y2="12"/>
+  <polyline points="14 6 20 12 14 18"/>
+  
+</svg>
+</span>
+      </a>
+    </div></div>
+  </div>
+</nav>
+
+
+
+
+      </main>
+
+      <footer id='footer' class='footer'>
+        <div class='container sep-before'><section class='widget widget-social_menu sep-after'><nav aria-label='Social Menu'>
+    <ul><li>
+        <a href='https://github.com/kenmoini' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Github account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://twitter.com/notkemo' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Twitter account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://instagram.com/kenmoini' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Instagram account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+  <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='mailto:ken@kenmoini.com' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Contact via Email</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+  <polyline points="22,6 12,13 2,6"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://linkedin.com/in/kenmoini' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Linkedin account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+  <rect x="2" y="9" width="4" height="12"/>
+  <circle cx="4" cy="4" r="2"/>
+  
+</svg>
+</a>
+      </li></ul>
+  </nav>
+</section><div class='copyright'>
+  <p></p>
+</div>
+
+          
+          
+          <small style="color:#333" class="muted"><em>Rev 58795f5</em></small>
+          
+        </div>
+      </footer>
+
+    </div>
+  </div><script>window.__assets_js_src ="/assets/js/"</script>
+
+<script src='https://www.kenmoini.com/assets/js/main.9e5c4cf4.js'></script><script src='/js/custom.js'></script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

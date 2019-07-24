@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>s3 on Ken Moini</title>
+    <link>https://www.kenmoini.com/tags/s3/</link>
+    <description>Recent content in s3 on Ken Moini</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 08 Jul 2019 22:31:48 -0500</lastBuildDate>
+    
+	<atom:link href="https://www.kenmoini.com/tags/s3/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Kubernetes on Linode – A Quick Start of Sorts</title>
+      <link>https://www.kenmoini.com/blog/kubernetes-on-linode-a-quick-start-of-sorts/</link>
+      <pubDate>Mon, 08 Jul 2019 22:31:48 -0500</pubDate>
+      
+      <guid>https://www.kenmoini.com/blog/kubernetes-on-linode-a-quick-start-of-sorts/</guid>
+      <description>When I was at Red Hat Summit, I spent the last day in some sweatpants and meandered about the showroom floor trying to hide my Executive Exchange badge from all the sales vultures. They announced over the loudspeaker that they were closing up shop soon, and so I made my last round across the room. To my surprise, there were rows I hadn&amp;rsquo;t gone to yet – the place was massive.</description>
+    </item>
+    
+    <item>
+      <title>GitLab Container Registry with Minio Custom S3 Endpoint</title>
+      <link>https://www.kenmoini.com/blog/gitlab-container-registry-with-minio-custom-s3-endpoint/</link>
+      <pubDate>Sun, 07 Apr 2019 22:31:48 -0500</pubDate>
+      
+      <guid>https://www.kenmoini.com/blog/gitlab-container-registry-with-minio-custom-s3-endpoint/</guid>
+      <description>Every time I get on this site to try to write something and post a new blog entry, it just ends up in the Elephant Graveyard of Drafts.
+I have half a dozen other posts waiting to be completed, on things such as how WordPress causes 1/3rd of the Internet to be vulnerable due to shipping old code, to a top-to-bottom view of Progressive Web Apps and Service Workers (super fun), OpenSCAP, and GPS NTP servers.</description>
+    </item>
+    
+  </channel>
+</rss>

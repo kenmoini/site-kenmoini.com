@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>jQuery on Ken Moini</title>
+    <link>https://www.kenmoini.com/tags/jquery/</link>
+    <description>Recent content in jQuery on Ken Moini</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 04 Jan 2019 20:38:59 -0500</lastBuildDate>
+    
+	<atom:link href="https://www.kenmoini.com/tags/jquery/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A Third of the Internet Is Vulnerable</title>
+      <link>https://www.kenmoini.com/blog/a-third-of-the-internet-is-vulnerable/</link>
+      <pubDate>Fri, 04 Jan 2019 20:38:59 -0500</pubDate>
+      
+      <guid>https://www.kenmoini.com/blog/a-third-of-the-internet-is-vulnerable/</guid>
+      <description>So I didn&amp;rsquo;t want to end up working on something all night long today, it&amp;rsquo;s Friday after all. What I decided to do is clean up, test, and release some code I have running on my favorite guenea pig - my work&amp;rsquo;s website.
+Project: Multiple WordPress installations Task: Fix vulnerabilities found in the version of jQuery and jQuery UI that are shipped with WordPress Lighthouse is a cool tool I use in web development, helps test and hone in on best practices, performance improvements, SEO, PWA, and more.</description>
+    </item>
+    
+  </channel>
+</rss>

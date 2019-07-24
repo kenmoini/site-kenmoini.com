@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang='en'><head>
+  <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content='Proxmox LVM Expansion, adding additional disks to your Proxmox host for VM storage. No real story behind this post, just something simple and probably more of a documentation of the process for myself more than anything.
+In case you were just CRAVING the story and background behind this…well, I recently got a few new (to me) Dell R710 servers, pretty decked out. Booting Proxmox off of a 128gb USB 3.'>
+<meta name='theme-color' content='#de0066'>
+
+<meta property='og:title' content='Quick n’ Dirty – Adding disks to Proxmox with LVM - Ken Moini'>
+<meta property='og:description' content='Proxmox LVM Expansion, adding additional disks to your Proxmox host for VM storage. No real story behind this post, just something simple and probably more of a documentation of the process for myself more than anything.
+In case you were just CRAVING the story and background behind this…well, I recently got a few new (to me) Dell R710 servers, pretty decked out. Booting Proxmox off of a 128gb USB 3.'>
+<meta property='og:url' content='https://www.kenmoini.com/blog/quick-n-dirty-adding-disks-to-proxmox/'>
+<meta property='og:site_name' content='Ken Moini'>
+<meta property='og:type' content='article'><meta property='article:section' content='blog'><meta property='article:tag' content='administration'><meta property='article:tag' content='debian'><meta property='article:tag' content='guide'><meta property='article:tag' content='linux'><meta property='article:tag' content='lvm'><meta property='article:tag' content='virtualization'><meta property='article:tag' content='vms'><meta property='article:tag' content='hypervisor'><meta property='article:tag' content='proxmox'><meta property='article:tag' content='red hat'><meta property='article:tag' content='rhel'><meta property='article:tag' content='tutorial'><meta property='article:tag' content='walkthrough'><meta property='article:published_time' content='2018-10-08T22:31:48-05:00'/><meta property='article:modified_time' content='2019-07-22T23:25:39-05:00'/><meta name='twitter:card' content='summary'><meta name='twitter:site' content='@notkemo'>
+
+<meta name="generator" content="Hugo 0.55.6" />
+
+  <title>Quick n’ Dirty – Adding disks to Proxmox with LVM - Ken Moini</title>
+  <link rel='canonical' href='https://www.kenmoini.com/blog/quick-n-dirty-adding-disks-to-proxmox/'>
+  
+  
+  <link rel='icon' href='/favicon.ico'>
+<link rel='stylesheet' href='/assets/css/main.fb20af92.css'><link rel='stylesheet' href='/css/custom.css'><style>
+    :root{--color-accent:#de0066;}
+    blockquote { border-left: .2em solid#de0066;}
+    :root{background-color:#000;}
+    body{color:#EEE;}
+    .title, h1, h2, h3, h4, h5, h6 {color:#EEE;}
+    a, .menu a, .sidebar-toggler span, .sub-menu-toggler, .widget-social_menu a {color:#ff9800;}
+    .menu li.current > a, a:focus, a:hover, .menu a:focus, .menu a:hover, .sidebar-toggler span:focus, .sidebar-toggler span:hover, .sub-menu-toggler:focus, .sub-menu-toggler:hover, .widget-social_menu a:focus, .widget-social_menu a:hover {color:#de0066;}
+</style>
+    
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap-grid.min.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/css/kemo.css">
+<link href="/vendor/fontawesome-free-5.9.0-web/css/all.css" rel="stylesheet"> 
+</head>
+<body class='page type-blog'>
+
+  <div class='site'><a class='screen-reader-text' href='#content'>Skip to Content</a><div class='main'><nav id='main-menu' class='menu main-menu' aria-label='Main Menu'>
+  <div class='container'>
+    
+    <ul>
+      <li class="">
+          <a href="/" title="Home - Ken Moini"><i class="fa fa-home"></i></a>
+      </li><li class='item'>
+        <a href='/about/' class="about">
+          <span>About</span>
+        </a>
+      </li><li class='item'>
+        <a href='/links/' class="links">
+          <span>Links</span>
+        </a>
+      </li><li class='item'>
+        <a href='/blog/' class="blog">
+          <span>Blog</span>
+        </a>
+      </li></ul>
+  </div>
+</nav><div class='header-widgets'>
+        <div class='container'></div>
+      </div>
+
+      <main id='content'>
+
+
+<article lang='en' class='entry'>
+  <header class='header entry-header'>
+  <div class='container sep-after'>
+    <div class='header-info'>
+      <h1 class='title'>Quick n’ Dirty – Adding disks to Proxmox with LVM</h1>
+      
+
+    </div>
+    <div class='entry-meta'>
+  <span class='posted-on'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+  
+</svg>
+<span class='screen-reader-text'>Posted on </span>
+  <time class='entry-date' datetime='2018-10-08T22:31:48-05:00'>2018, Oct 08</time>
+</span>
+
+  
+  
+<span class='reading-time'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <circle cx="12" cy="12" r="10"/>
+  <polyline points="12 6 12 12 15 15"/>
+  
+</svg>
+4 mins read
+</span>
+
+
+  
+  
+</div>
+
+
+  </div>
+</header>
+
+  
+  
+
+  <div class='container entry-content'>
+  
+
+<p>Proxmox LVM Expansion, adding additional disks to your Proxmox host for VM storage.  No real story behind this post, just something simple and probably more of a documentation of the process for myself more than anything.</p>
+
+<p>In case you were just CRAVING the story and background behind this…well, I recently got a few new (to me) Dell R710 servers, pretty decked out.  Booting Proxmox off of a 128gb USB 3.0 Stick, the internal hard drives were untouched and more importantly, unmounted when booting into Proxmox.</p>
+
+<p>It pays to have an RHCSA…(PV/VG/LV is part of it).  In looking for a guides and resources detailing the addition of additional disks to Proxmox, many of them had it set as a mounted ext3 filesystem.  I knew this couldn’t be right.  A lot of other resources were extremely confusing, and then I realized that Proxmox uses LVM natively so if I recall to my RHCSA training all I need to do is assign the disks as a Physical Volume, add them to the associated Volume Group, and extend the Logical Volume.  Then boom, LVM handles the rest of it for me like magic.</p>
+
+<p>I’ve got 2 120gb SSDs in the server waiting to host some VMs so let’s get those disks initialized and added to the LVM pools!</p>
+
+<p>And before you ask, yes that set of 120gb SSDs is in a RAID0.  As you can tell, I too like to live dangerously…but seriously they’re SSDs and I’ll probably reformat the whole thing before it could even error out…and yeah I could use RHV Self-Hosted, but honestly, for quick tests in a lab Proxmox is easier for me.  This isn’t production after all…geez, G.O.M.D.</p>
+
+<h2 id="take-1">Take 1</h2>
+
+<p>First thing, load into the Proxmox server terminal, either with the keyboard and mouse or via the Web GUI’s Shell option.  You’ll want to be root.</p>
+
+<p>Next, use <strong><em>fdisk -l</em></strong> to see what disk you’ll be attaching, mine looked something like this:</p>
+
+<figure class="col-sm-12 text-center"><a href="/images/content-stuff/screenshot-192.168.69.20-8006-2018.10.07-21-31-51.png" target="_blank">
+    <img src="/images/content-stuff/screenshot-192.168.69.20-8006-2018.10.07-21-31-51.png"/> </a>
+</figure>
+
+
+<p>What I’m looking for is that <strong><em>/dev/sda</em></strong> device.  Let’s work with that.</p>
+
+<p>Next, we’ll initialize the partition table, let’s use <strong><em>cfdisk</em></strong> for that&hellip;</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cfdisk /dev/sda</code></pre></div>
+
+<p>Navigate around&hellip;</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">&gt; New -&gt; Primary -&gt; Specify size in MB
+&gt; Write
+&gt; Quit</code></pre></div>
+
+<p>Great, next let’s create a Physical Volume from that partition.  It’ll ask if you want to wipe, press <strong><em>Y</em></strong>&hellip;</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ pvcreate /dev/sda1</code></pre></div>
+
+<figure class="col-sm-12 text-center"><a href="/images/content-stuff/Screenshot-from-2018-10-07-21-46-52.png" target="_blank">
+    <img src="/images/content-stuff/Screenshot-from-2018-10-07-21-46-52.png"/> </a>
+</figure>
+
+
+<p>Next we’ll extend the <strong><em>pve</em></strong> Volume Group with the new Physical Volume…</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ vgextend pve /dev/sda1</code></pre></div>
+
+<p>We’re almost there, next let’s extend the logical volume for the PVE Data mapper…we’re increasing it by 251.50GB, you can find that size by seeing how much is available with the <strong><em>vgs</em></strong> command</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ lvextend /dev/pve/data -L +251.50g</code></pre></div>
+
+<p>And that’s it! now if we jump into Proxmox and check the Storage across the Datacenter we can see it’s increased!  Or we can run the command&hellip;</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ lvdisplay</code></pre></div>
+
+<h2 id="rinse-and-repeat">Rinse and Repeat</h2>
+
+<p>Now we’re on my next Proxmox node.  No, I’m not building a cluster and providing shared storage, at least not at this layer.</p>
+
+<p>My next system is a Dell R710 with Proxmox freshly installed on an internal 128gb USB flash drive.  It has two RAID1+1hot-spare arrays that are about 418GB large each, they’re at <em>/dev/sdb</em> and <em>/dev/sdc</em>.  Let’s add them really quickly&hellip;</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cfdisk /dev/sdb</code></pre></div>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">&gt; GPT
+&gt; New -&gt; Primary -&gt; Specify size in MB
+&gt; Write
+&gt; Quit</code></pre></div>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ cfdisk /dev/sdc</code></pre></div>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">&gt; GPT
+&gt; New -&gt; Primary -&gt; Specify size in MB
+&gt; Write
+&gt; Quit</code></pre></div>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ pvcreate /dev/sdb1 <span style="color:#f92672">&amp;&amp;</span> pvcreate /dev/sdc1
+$ vgextend pve /dev/sdb1 <span style="color:#f92672">&amp;&amp;</span> vgextend pve /dev/sdc1
+$ lvextend /dev/pve/data -L +851.49g</code></pre></div>
+
+<p>And now we should have just about a terabyte of storage available to load VMs into&hellip;</p>
+
+<figure class="col-sm-12 text-center"><a href="/images/content-stuff/Screenshot-from-2018-10-08-00-41-14-1024x507.png" target="_blank">
+    <img src="/images/content-stuff/Screenshot-from-2018-10-08-00-41-14-1024x507.png"/> </a>
+</figure>
+
+
+<p>Huzzah!  It worked!  Plenty of room for our VMs to roam around now.</p>
+
+<p>What am I gonna do with a few redundant TBs of VM storage and about half a TB in available RAM and more compute than makes sense?  Continue along my Disconnected DevSecOps lab challenge of course.  You might remember some software defined networking services being tested on a Raspberry Pi Cluster&hellip;</p>
+
+<p>More soon to come&hellip;</p>
+
+</div>
+
+  
+<footer class='entry-footer'>
+  <div class='container sep-before'><div class='last-updated'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20 14.66V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h5.34" />
+  <polygon points="18 2 22 6 12 16 8 16 8 12 18 2" />
+  
+</svg>
+<span class='screen-reader-text'>Last updated: </span>
+      <time class='entry-date' datetime='2019-07-22T23:25:39-05:00'>2019, Jul 22</time>
+    </div><div class='tags'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+<span class='screen-reader-text'>Tags: </span><a class='tag' href='/tags/administration/'>administration</a>, <a class='tag' href='/tags/debian/'>debian</a>, <a class='tag' href='/tags/guide/'>guide</a>, <a class='tag' href='/tags/linux/'>linux</a>, <a class='tag' href='/tags/lvm/'>lvm</a>, <a class='tag' href='/tags/virtualization/'>virtualization</a>, <a class='tag' href='/tags/vms/'>vms</a>, <a class='tag' href='/tags/hypervisor/'>hypervisor</a>, <a class='tag' href='/tags/proxmox/'>proxmox</a>, <a class='tag' href='/tags/red-hat/'>red hat</a>, <a class='tag' href='/tags/rhel/'>rhel</a>, <a class='tag' href='/tags/tutorial/'>tutorial</a>, <a class='tag' href='/tags/walkthrough/'>walkthrough</a></div>
+
+  </div>
+</footer>
+
+
+</article>
+
+<nav class='entry-nav'>
+  <div class='container'>
+  <div class="row"><div class='prev-entry sep-before col-sm-12 col-md-6'>
+      <a href='/blog/software-defined-networking-with-linux/'>
+        <span aria-hidden='true'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="20" y1="12" x2="4" y2="12"/>
+  <polyline points="10 18 4 12 10 6"/>
+  
+</svg>
+ Previous</span>
+        <span class='screen-reader-text'>Previous post: </span>Software Defined Networking with Linux</a>
+    </div><div class='next-entry sep-before col-sm-12 col-md-6 text-right'>
+      <a href='/blog/how-to-passing-the-certified-cloudbees-jenkins-engineer-exam/'>
+        <span class='screen-reader-text'>Next post: </span>How-to: Passing the Certified Cloudbees Jenkins Engineer exam<span aria-hidden='true'>Next <svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="4" y1="12" x2="20" y2="12"/>
+  <polyline points="14 6 20 12 14 18"/>
+  
+</svg>
+</span>
+      </a>
+    </div></div>
+  </div>
+</nav>
+
+
+
+
+      </main>
+
+      <footer id='footer' class='footer'>
+        <div class='container sep-before'><section class='widget widget-social_menu sep-after'><nav aria-label='Social Menu'>
+    <ul><li>
+        <a href='https://github.com/kenmoini' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Github account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://twitter.com/notkemo' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Twitter account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://instagram.com/kenmoini' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Instagram account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+  <line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='mailto:ken@kenmoini.com' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Contact via Email</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+  <polyline points="22,6 12,13 2,6"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://linkedin.com/in/kenmoini' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Linkedin account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+  <rect x="2" y="9" width="4" height="12"/>
+  <circle cx="4" cy="4" r="2"/>
+  
+</svg>
+</a>
+      </li></ul>
+  </nav>
+</section><div class='copyright'>
+  <p></p>
+</div>
+
+          
+          
+          <small style="color:#333" class="muted"><em>Rev 58795f5</em></small>
+          
+        </div>
+      </footer>
+
+    </div>
+  </div><script>window.__assets_js_src ="/assets/js/"</script>
+
+<script src='https://www.kenmoini.com/assets/js/main.9e5c4cf4.js'></script><script src='/js/custom.js'></script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
